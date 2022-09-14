@@ -28,9 +28,13 @@ export const AdminTemplate = (props) => {
   //   return <Redirect to="/" />;
   // }
 
-  const operations = <Fragment>
-    <h1 className="text-white text-center font-bold text-xl pt-4">Admin BookingMovie</h1>
-  </Fragment>
+  const operations = (
+    <Fragment>
+      <h1 className="text-white text-center font-bold text-xl pt-4">
+        Admin BookingMovie
+      </h1>
+    </Fragment>
+  );
 
   return (
     <Route
@@ -45,18 +49,16 @@ export const AdminTemplate = (props) => {
               }}
             >
               <Sider
+                theme="light"
+                className="mr-3"
                 collapsible
                 collapsed={collapsed}
                 onCollapse={(value) => setCollapsed(value)}
               >
-                <div className="logo p-5 h6">
+                <div className="logo p-5">
                   <img src={logo} alt="logo" />
                 </div>
-                <Menu
-                  theme="dark"
-                  mode="inline"
-                  defaultSelectedKeys={["1"]}
-                >
+                <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
                   <Menu.Item key="1" icon={<UserOutlined />}>
                     <NavLink to="/admin/users">Users</NavLink>
                   </Menu.Item>
@@ -70,20 +72,12 @@ export const AdminTemplate = (props) => {
               </Sider>
               <Layout className="site-layout">
                 <Header
-                  className="site-layout-background"
-                  style={{
-                    padding: 0,
-                  }}
+                  className="site-layout-background bg-indigo-500 mb-2 ml-2"
                 >
                   {operations}
                 </Header>
                 <Content
-                  className="site-layout-background"
-                  style={{
-                    margin: 16,
-                    padding: 16,
-                    minHeight: 280,
-                  }}
+                  className="site-layout-background m-2 p-3 bg-indigo-100"
                 >
                   {<Component {...propsRoute} />}
                 </Content>

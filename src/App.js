@@ -5,6 +5,7 @@ import { AdminTemplate } from "templates/AdminTemplate/AdminTemplate";
 import DashBoard from "pages/Admin/DashBoard/DashBoard";
 import Films from "pages/Admin/Films/Films";
 import ShowTime from "pages/Admin/ShowTime/ShowTime";
+import Loading from "component/Loading/Loading";
 
 export const history = createBrowserHistory();
 
@@ -12,6 +13,7 @@ function App() {
   return (
     <div className="App">
       <Router history={history}>
+        {/* <Loading /> */}
         <Switch>
           <AdminTemplate path="/admin" exact Component={DashBoard} />
           <AdminTemplate path="/admin/films" exact Component={Films} />
