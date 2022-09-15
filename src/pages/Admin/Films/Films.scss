@@ -1,5 +1,17 @@
 .Films {
-    .ant-input-group-wrapper{
-        
+  .ant-input-group-wrapper {
+  }
+  .imageMovie {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+  }
+  .sideTable {
+    th{
+        text-align: center ;
     }
+    td{
+        text-align: center ;
+    }
+  }
 }

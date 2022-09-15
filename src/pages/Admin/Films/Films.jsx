@@ -1,97 +1,87 @@
 import React, { useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import { Button, Table } from "antd";
 import { Input } from "antd";
-import "./Films.scss";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMoviesAction } from "redux/actions/MovieManagerAction";
+import "./Films.scss";
 
 const { Search } = Input;
 
 export default function Films() {
   const dispatch = useDispatch();
   const moviesDefault = useSelector((state) => state.MovieManagerReducer);
+  console.log(moviesDefault);
+
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      filters: [
-        {
-          text: "Joe",
-          value: "Joe",
-        },
-        {
-          text: "Jim",
-          value: "Jim",
-        },
-        {
-          text: "Submenu",
-          value: "Submenu",
-          children: [
-            {
-              text: "Green",
-              value: "Green",
-            },
-            {
-              text: "Black",
-              value: "Black",
-            },
-          ],
-        },
-      ],
-      // specify the condition of filtering result
-      // here is that finding the name started with `value`
-      onFilter: (value, record) => record.name.indexOf(value) === 0,
-      sorter: (a, b) => a.name.length - b.name.length,
+      title: "ID",
+      dataIndex: "maPhim",
+      value: (text, object) => <span>{text}</span>,
+      sorter: (a, b) => a.maPhim - b.maPhim,
+      defaultSortOrder: "ascend",
       sortDirections: ["descend"],
+      width: "7%",
     },
     {
-      title: "Age",
-      dataIndex: "age",
-      defaultSortOrder: "descend",
-      sorter: (a, b) => a.age - b.age,
+      title: "Image",
+      dataIndex: "hinhAnh",
+      render: (text, films, index) => (
+        <>
+          <img
+            className="imageMovie mx-auto"
+            src={text}
+            alt={films.tenPhim}
+            onError={(e) => {
+              e.target.onError = null;
+              e.target.src = `https://picsum.photos/id/${index}/70/70`;
+            }}
+          />
+        </>
+      ),
+      width: "15%",
+      align: "center",
+      // defaultSortOrder: "descend",
+      // sorter: (a, b) => a.age - b.age,
     },
     {
-      title: "Address",
-      dataIndex: "address",
-      filters: [
-        {
-          text: "London",
-          value: "London",
-        },
-        {
-          text: "New York",
-          value: "New York",
-        },
-      ],
-      onFilter: (value, record) => record.address.indexOf(value) === 0,
+      title: "Name",
+      dataIndex: "tenPhim",
+      sorter: (a, b) => {
+        let nameFilmA = a.tenPhim.toLowerCase().trim();
+        let nameFilmB = b.tenPhim.toLowerCase().trim();
+        return nameFilmA > nameFilmB;
+      },
+      sortDirections: ["descend"],
+      width: "20%",
+    },
+    {
+      title: "Description",
+      dataIndex: "moTa",
+      render: (text, film) => (
+        <>
+          {film.moTa.length > 50 ? film.moTa.substr(0, 50) + "..." : film.moTa}
+        </>
+      ),
+      width: "25%",
+    },
+    {
+      title: "Action",
+      dataIndex: "action",
+      render: (text, film) => (
+        <>
+          <NavLink className=" text-indigo-800 mr-2 text-2xl" to="/">
+            <EditOutlined />
+          </NavLink>
+          <NavLink className="text-red-600 text-2xl" to="/">
+            <DeleteOutlined />
+          </NavLink>
+        </>
+      ),
     },
   ];
-  const data = [
-    {
-      key: "1",
-      name: "John Brown",
-      age: 32,
-      address: "New York No. 1 Lake Park",
-    },
-    {
-      key: "2",
-      name: "Jim Green",
-      age: 42,
-      address: "London No. 1 Lake Park",
-    },
-    {
-      key: "3",
-      name: "Joe Black",
-      age: 32,
-      address: "Sidney No. 1 Lake Park",
-    },
-    {
-      key: "4",
-      name: "Jim Red",
-      age: 32,
-      address: "London No. 2 Lake Park",
-    },
-  ];
+  const data = moviesDefault.lstFilm;
 
   const onChange = (pagination, filters, sorter, extra) => {
     console.log("params", pagination, filters, sorter, extra);
@@ -104,15 +94,20 @@ export default function Films() {
   const onSearch = (value) => console.log(value);
   return (
     <div className="container mx-auto Films text-center">
-      <h1 className="text-4xl mb-4">Quản lý phim</h1>
-      <Button className="mr-5">Thêm phim</Button>
+      <h1 className="text-4xl mb-4">Movie Manager</h1>
+      <Button className="mr-5">Add Movie</Button>
       <Search
         className="w-1/3 mb-5"
         placeholder="input search text"
         onSearch={onSearch}
         enterButton
       />
-      <Table columns={columns} dataSource={data} onChange={onChange} />
+      <Table
+        className="sideTable"
+        columns={columns}
+        dataSource={data}
+        onChange={onChange}
+      />
     </div>
   );
 }

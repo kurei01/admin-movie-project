@@ -7,6 +7,7 @@ import {
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import logo from "assets/adminLogo.jpg";
+import "./AdminTemplate.scss";
 const { Header, Sider, Content } = Layout;
 
 export const AdminTemplate = (props) => {
@@ -43,14 +44,10 @@ export const AdminTemplate = (props) => {
         // props.location, props.history, props.match
         return (
           <Fragment>
-            <Layout
-              style={{
-                minHeight: "100vh",
-              }}
-            >
+            <Layout className="adminTemplate">
               <Sider
                 theme="light"
-                className="mr-3"
+                className="sider mr-3"
                 collapsible
                 collapsed={collapsed}
                 onCollapse={(value) => setCollapsed(value)}
@@ -71,14 +68,10 @@ export const AdminTemplate = (props) => {
                 </Menu>
               </Sider>
               <Layout className="site-layout">
-                <Header
-                  className="site-layout-background bg-indigo-500 mb-2 ml-2"
-                >
+                <Header className="header site-layout-background bg-indigo-500 mb-2 ml-2">
                   {operations}
                 </Header>
-                <Content
-                  className="site-layout-background m-2 p-3 bg-indigo-100"
-                >
+                <Content className="site-layout-background m-2 p-3 bg-indigo-100">
                   {<Component {...propsRoute} />}
                 </Content>
               </Layout>
