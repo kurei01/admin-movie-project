@@ -1,4 +1,3 @@
-import "./App.css";
 import { createBrowserHistory } from "history";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { AdminTemplate } from "templates/AdminTemplate/AdminTemplate";
@@ -6,6 +5,7 @@ import DashBoard from "pages/Admin/DashBoard/DashBoard";
 import Films from "pages/Admin/Films/Films";
 import ShowTime from "pages/Admin/ShowTime/ShowTime";
 import Loading from "component/Loading/Loading";
+import Addnew from "pages/Admin/Films/Addnew/Addnew";
 
 export const history = createBrowserHistory();
 
@@ -17,6 +17,7 @@ function App() {
         <Switch>
           <AdminTemplate path="/admin" exact Component={DashBoard} />
           <AdminTemplate path="/admin/films" exact Component={Films} />
+          <AdminTemplate path="/admin/films/addnew" exact Component={Addnew} />
           <AdminTemplate path="/admin/users" exact Component={DashBoard} />
           <AdminTemplate path="/admin/showtimes" exact Component={ShowTime} />
         </Switch>

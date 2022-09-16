@@ -4,6 +4,8 @@ import {
   DesktopOutlined,
   UserOutlined,
   VideoCameraOutlined,
+  FileOutlined,
+  VideoCameraAddOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import logo from "assets/adminLogo.jpg";
@@ -14,6 +16,10 @@ export const AdminTemplate = (props) => {
   // path, exact, Component
   const { Component, ...restProps } = props;
   const [collapsed, setCollapsed] = useState(false);
+  const [selectedKey, setSelectedKey] = useState(
+    localStorage.getItem("keyMenu") || "1"
+  );
+  // console.log(selectedKey);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -31,7 +37,7 @@ export const AdminTemplate = (props) => {
 
   const operations = (
     <Fragment>
-      <h1 className="text-white text-center font-bold text-xl pt-4">
+      <h1 className="text-indigo-100 text-center font-bold text-2xl pt-4">
         Admin BookingMovie
       </h1>
     </Fragment>
@@ -55,14 +61,32 @@ export const AdminTemplate = (props) => {
                 <div className="logo p-5">
                   <img src={logo} alt="logo" />
                 </div>
-                <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
+                <Menu
+                  onClick={(e) => {
+                    setSelectedKey(e.key.toString());
+                    localStorage.setItem("keyMenu", e.key.toString());
+                  }}
+                  theme="light"
+                  mode="inline"
+                  defaultSelectedKeys={selectedKey}
+                >
                   <Menu.Item key="1" icon={<UserOutlined />}>
                     <NavLink to="/admin/users">Users</NavLink>
                   </Menu.Item>
-                  <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                    <NavLink to="/admin/films">Films</NavLink>
-                  </Menu.Item>
-                  <Menu.Item key="3" icon={<DesktopOutlined />}>
+                  <Menu.SubMenu
+                    key="sub1"
+                    icon={<FileOutlined />}
+                    title="Films"
+                  >
+                    <Menu.Item key="2" icon={<VideoCameraOutlined />}>
+                      <NavLink to="/admin/films">Films</NavLink>
+                    </Menu.Item>
+                    <Menu.Item key="3" icon={<VideoCameraAddOutlined />}>
+                      <NavLink to="/admin/films/addnew">Add new</NavLink>
+                    </Menu.Item>
+                  </Menu.SubMenu>
+
+                  <Menu.Item key="4" icon={<DesktopOutlined />}>
                     <NavLink to="/admin/showtimes">Showtime</NavLink>
                   </Menu.Item>
                 </Menu>
@@ -71,8 +95,8 @@ export const AdminTemplate = (props) => {
                 <Header className="header site-layout-background bg-indigo-500 mb-2 ml-2">
                   {operations}
                 </Header>
-                <Content className="site-layout-background m-2 p-3 bg-indigo-100">
-                  {<Component {...propsRoute} />}
+                <Content className="site-layout-background content m-2 p-3 bg-indigo-100">
+                  {<Component setSelectedKey={setSelectedKey} {...propsRoute} />}
                 </Content>
               </Layout>
             </Layout>

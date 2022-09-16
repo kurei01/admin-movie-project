@@ -1,14 +1,13 @@
-.adminTemplate{
-    .sider{
-        
-    }
+.adminTemplate {
+  min-height: 100vh;
+  .sider {
+  }
 
-    .site-layout{
-        .header{
-
-        }
-        .site-layout-background{
-    
-        }
+  .site-layout {
+    .header {
     }
+    .content {
+
+    }
+  }
 }

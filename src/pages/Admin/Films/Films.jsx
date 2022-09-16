@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { Button, Table } from "antd";
 import { Input } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
@@ -9,10 +9,11 @@ import "./Films.scss";
 
 const { Search } = Input;
 
-export default function Films() {
+export default function Films(props) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const moviesDefault = useSelector((state) => state.MovieManagerReducer);
-  console.log(moviesDefault);
+  // console.log(moviesDefault);
 
   const columns = [
     {
@@ -95,19 +96,23 @@ export default function Films() {
   return (
     <div className="container mx-auto Films text-center">
       <h1 className="text-4xl mb-4">Movie Manager</h1>
-      <Button className="mr-5">Add Movie</Button>
+      <Button
+        className="mr-5"
+        onClick={() => {
+          history.push("/admin/films/addnew");
+          props.setSelectedKey("3");
+          localStorage.setItem("keyMenu", "3");
+        }}
+      >
+        Add Movie
+      </Button>
       <Search
         className="w-1/3 mb-5"
         placeholder="input search text"
         onSearch={onSearch}
         enterButton
       />
-      <Table
-        className="sideTable"
-        columns={columns}
-        dataSource={data}
-        onChange={onChange}
-      />
+      <Table columns={columns} dataSource={data} onChange={onChange} />
     </div>
   );
 }
