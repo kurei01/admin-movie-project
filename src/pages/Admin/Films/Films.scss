@@ -6,6 +6,32 @@
     height: 70px;
     object-fit: cover;
   }
+  .ant-input-search {
+    .ant-input {
+      &:hover {
+        border: 1px solid #645CAA;
+      }
+      &:not(:hover) {
+        border: 1px solid #BFACE0;
+      }
+      &:focus {
+        border: 1px solid #645CAA;
+      }
+    }
+  }
+
+  .addMovie {
+    margin-left: 1%;
+    background-color: #645caa;
+    color: #bface0;
+    border: none;
+    font-weight: 600;
+    border-radius: 8px;
+    &:hover {
+      color: #645caa;
+      background-color: #bface0;
+    }
+  }
   .ant-table {
     /* width */
     height: 70vh;

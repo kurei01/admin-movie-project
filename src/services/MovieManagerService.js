@@ -10,8 +10,25 @@ export class MovieManagerService extends BaseService {
     return this.get(`/api/QuanLyPhim/LayDanhSachBanner`);
   };
 
-  getListFilm = () => {
-    return this.get(`/api/QuanLyPhim/LayDanhSachPhim?maNhom=${FILMGROUPID}`);
+  fetchMovies = (nameMovie = "") => {
+    return nameMovie.trim() !== ""
+      ? this.get(
+          `/api/QuanLyPhim/LayDanhSachPhim?maNhom=${FILMGROUPID}&tenPhim=${nameMovie}`
+        )
+      : this.get(`/api/QuanLyPhim/LayDanhSachPhim?maNhom=${FILMGROUPID}`);
+  };
+
+  addMovieByUploadImage = (formData) => {
+    return this.post("/api/QuanLyPhim/ThemPhimUploadHinh", formData);
+  };
+  getMovieInfo = (id) => {
+    return this.get(`/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`);
+  };
+  uploadMovieUpdate = (formData) => {
+    return this.post(`/api/QuanLyPhim/CapNhatPhimUpload`, formData);
+  };
+  deleteMovie = (id) => {
+    return this.delete(`/api/QuanLyPhim/XoaPhim?maPhim=${id}`);
   };
 }
 

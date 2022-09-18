@@ -1,13 +1,15 @@
 import React from "react";
-import styleLoading from "./Loading.module.css";
+import './Loading.scss'
 import { useSelector } from "react-redux";
 
 export default function Loading() {
   const { isLoading } = useSelector((state) => state.LoadingReducer);
   if (isLoading) {
     return (
-      <div className={styleLoading.bgLoading}>
-        <img src={require('assets/imgLoading/loading.gif')} alt="" />
+      <div class="loader">
+        <div class="inner one"></div>
+        <div class="inner two"></div>
+        <div class="inner three"></div>
       </div>
     );
   } else {

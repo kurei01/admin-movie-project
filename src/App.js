@@ -6,6 +6,7 @@ import Films from "pages/Admin/Films/Films";
 import ShowTime from "pages/Admin/ShowTime/ShowTime";
 import Loading from "component/Loading/Loading";
 import Addnew from "pages/Admin/Films/Addnew/Addnew";
+import Edit from "pages/Admin/Films/Edit/Edit";
 
 export const history = createBrowserHistory();
 
@@ -18,8 +19,9 @@ function App() {
           <AdminTemplate path="/admin" exact Component={DashBoard} />
           <AdminTemplate path="/admin/films" exact Component={Films} />
           <AdminTemplate path="/admin/films/addnew" exact Component={Addnew} />
+          <AdminTemplate path="/admin/films/edit/:id" exact Component={Edit} />
+          <AdminTemplate path="/admin/films/showtime/:id" exact Component={ShowTime} />
           <AdminTemplate path="/admin/users" exact Component={DashBoard} />
-          <AdminTemplate path="/admin/showtimes" exact Component={ShowTime} />
         </Switch>
       </Router>
     </div>

@@ -1,17 +1,20 @@
-import React, { useEffect } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import React, { useCallback, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import { Button, Table } from "antd";
 import { Input } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, CalendarOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMoviesAction } from "redux/actions/MovieManagerAction";
+import {
+  deleteMovieAction,
+  fetchMoviesAction,
+} from "redux/actions/MovieManagerAction";
 import "./Films.scss";
+import { debounce } from "lodash";
 
 const { Search } = Input;
 
 export default function Films(props) {
   const dispatch = useDispatch();
-  const history = useHistory();
   const moviesDefault = useSelector((state) => state.MovieManagerReducer);
   // console.log(moviesDefault);
 
@@ -21,7 +24,7 @@ export default function Films(props) {
       dataIndex: "maPhim",
       value: (text, object) => <span>{text}</span>,
       sorter: (a, b) => a.maPhim - b.maPhim,
-      defaultSortOrder: "ascend",
+      defaultSortOrder: "descend",
       sortDirections: ["descend"],
       width: "7%",
     },
@@ -72,11 +75,32 @@ export default function Films(props) {
       dataIndex: "action",
       render: (text, film) => (
         <>
-          <NavLink className=" text-indigo-800 mr-2 text-2xl" to="/">
+          <NavLink
+            key={1}
+            className=" text-indigo-800 mr-2 text-2xl"
+            to={`/admin/films/edit/${film.maPhim}`}
+          >
             <EditOutlined />
           </NavLink>
-          <NavLink className="text-red-600 text-2xl" to="/">
+          <span
+            key={2}
+            className="text-red-600 text-2xl hover:text-lime-500 cursor-pointer "
+            onClick={() => {
+              if (
+                window.confirm(`are you sure to delete movie ${film.tenPhim}`)
+              ) {
+                dispatch(deleteMovieAction(film.maPhim));
+              }
+            }}
+          >
             <DeleteOutlined />
+          </span>
+          <NavLink
+            key={3}
+            className=" text-lime-700 ml-2 text-2xl"
+            to={`/admin/films/showtime/${film.maPhim}`}
+          >
+            <CalendarOutlined />
           </NavLink>
         </>
       ),
@@ -84,35 +108,49 @@ export default function Films(props) {
   ];
   const data = moviesDefault.lstFilm;
 
-  const onChange = (pagination, filters, sorter, extra) => {
-    console.log("params", pagination, filters, sorter, extra);
+  // const onSearch = (value) => {
+  //   //call api
+  //   dispatch(fetchMoviesAction(value));
+  // };
+  
+  //delay search with useDebounce :>>
+  const debounceSearch = useCallback(
+    debounce((value) => dispatch(fetchMoviesAction(value)), 500),
+    []
+  );
+
+  const onSearchByChange = (e) => {
+    //call api
+    const value = e.target.value;
+    // console.log(value);
+    debounceSearch(value);
   };
 
   useEffect(() => {
     dispatch(fetchMoviesAction());
   }, []);
 
-  const onSearch = (value) => console.log(value);
   return (
     <div className="container mx-auto Films text-center">
-      <h1 className="text-4xl mb-4">Movie Manager</h1>
+      <h1 className="w-44 p-1 text-indigo-800 font-semibold rounded-md mt-2 text-2xl mb-4 ">
+        Movie Manager
+      </h1>
+      <Search
+        className="w-1/3 mb-5"
+        placeholder="Search movie"
+        onChange={onSearchByChange}
+      />
       <Button
-        className="mr-5"
+        className="addMovie"
         onClick={() => {
-          history.push("/admin/films/addnew");
+          props.history.push("/admin/films/addnew");
           props.setSelectedKey("3");
           localStorage.setItem("keyMenu", "3");
         }}
       >
         Add Movie
       </Button>
-      <Search
-        className="w-1/3 mb-5"
-        placeholder="input search text"
-        onSearch={onSearch}
-        enterButton
-      />
-      <Table columns={columns} dataSource={data} onChange={onChange} />
+      <Table columns={columns} dataSource={data} rowKey={"maPhim"} />
     </div>
   );
 }

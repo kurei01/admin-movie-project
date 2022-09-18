@@ -68,14 +68,15 @@ export const AdminTemplate = (props) => {
                   }}
                   theme="light"
                   mode="inline"
-                  defaultSelectedKeys={selectedKey}
+                  defaultSelectedKeys={['1']}
+                  selectedKeys={selectedKey}
                 >
                   <Menu.Item key="1" icon={<UserOutlined />}>
                     <NavLink to="/admin/users">Users</NavLink>
                   </Menu.Item>
                   <Menu.SubMenu
                     key="sub1"
-                    icon={<FileOutlined />}
+                    icon={<DesktopOutlined />}
                     title="Films"
                   >
                     <Menu.Item key="2" icon={<VideoCameraOutlined />}>
@@ -86,9 +87,9 @@ export const AdminTemplate = (props) => {
                     </Menu.Item>
                   </Menu.SubMenu>
 
-                  <Menu.Item key="4" icon={<DesktopOutlined />}>
+                  {/* <Menu.Item key="4" icon={<DesktopOutlined />}>
                     <NavLink to="/admin/showtimes">Showtime</NavLink>
-                  </Menu.Item>
+                  </Menu.Item> */}
                 </Menu>
               </Sider>
               <Layout className="site-layout">
@@ -96,7 +97,12 @@ export const AdminTemplate = (props) => {
                   {operations}
                 </Header>
                 <Content className="site-layout-background content m-2 p-3 bg-indigo-100">
-                  {<Component setSelectedKey={setSelectedKey} {...propsRoute} />}
+                  {
+                    <Component
+                      setSelectedKey={setSelectedKey}
+                      {...propsRoute}
+                    />
+                  }
                 </Content>
               </Layout>
             </Layout>

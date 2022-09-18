@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { DOMAIN, TOKEN, TOKEN_CYBER } from "util/settings/config";
+import { ACCESS_TOKEN, DOMAIN, TOKEN, TOKEN_CYBER } from "util/settings/config";
 
 // PUT JSON ve backend
 export class BaseService {
@@ -11,7 +11,8 @@ export class BaseService {
       method: "PUT",
       data: model,
       headers: {
-        TokenCybersoft: "Bearer " + localStorage.getItem(TOKEN_CYBER), // JWT
+        TokenCybersoft: TOKEN_CYBER,
+        Authorization: "Bearer " + ACCESS_TOKEN, // JWT
       },
     });
   };
@@ -23,7 +24,8 @@ export class BaseService {
       method: "POST",
       data: model,
       headers: {
-        TokenCybersoft: "Bearer " + localStorage.getItem(TOKEN_CYBER), // JWT
+        TokenCybersoft: TOKEN_CYBER,
+        Authorization: "Bearer " + ACCESS_TOKEN, // JWT
       },
     });
   };
@@ -34,7 +36,8 @@ export class BaseService {
       url: `${DOMAIN}/${url}`,
       method: "GET",
       headers: {
-        TokenCybersoft: TOKEN_CYBER, // JWT
+        TokenCybersoft: TOKEN_CYBER,
+        Authorization: "Bearer " + ACCESS_TOKEN, // JWT
       },
     });
   };
@@ -45,7 +48,8 @@ export class BaseService {
       url: `${DOMAIN}/${url}`,
       method: "DELETE",
       headers: {
-        TokenCybersoft: "Bearer " + localStorage.getItem(TOKEN_CYBER), // JWT
+        TokenCybersoft: TOKEN_CYBER,
+        Authorization: "Bearer " + ACCESS_TOKEN, // JWT
       },
     });
   };
