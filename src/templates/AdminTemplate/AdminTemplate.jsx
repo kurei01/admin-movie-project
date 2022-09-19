@@ -68,8 +68,8 @@ export const AdminTemplate = (props) => {
                   theme="light"
                   mode="inline"
                   defaultSelectedKeys={selectedKey}
-                  selectedKeys={selectedKey}
-                  defaultOpenKeys={['1']}
+                  selectedKeys={selectedKey}  
+                  defaultOpenKeys={['sub1']}
                 >
                   <Menu.SubMenu
                     key="sub1"
