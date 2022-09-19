@@ -16,12 +16,12 @@ function App() {
       <Router history={history}>
         {/* <Loading /> */}
         <Switch>
-          <AdminTemplate path="/admin" exact Component={DashBoard} />
-          <AdminTemplate path="/admin/films" exact Component={Films} />
-          <AdminTemplate path="/admin/films/addnew" exact Component={Addnew} />
-          <AdminTemplate path="/admin/films/edit/:id" exact Component={Edit} />
-          <AdminTemplate path="/admin/films/showtime/:id" exact Component={ShowTime} />
-          <AdminTemplate path="/admin/users" exact Component={DashBoard} />
+          <AdminTemplate path="/" exact Component={Films} />
+          <AdminTemplate path="/films" exact Component={Films} />
+          <AdminTemplate path="/films/addnew" exact Component={Addnew} />
+          <AdminTemplate path="/films/edit/:id" exact Component={Edit} />
+          <AdminTemplate path="/films/showtime/:id" exact Component={ShowTime} />
+          <AdminTemplate path="/users" exact Component={DashBoard} />
         </Switch>
       </Router>
     </div>

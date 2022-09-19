@@ -67,25 +67,25 @@ export const AdminTemplate = (props) => {
                   }}
                   theme="light"
                   mode="inline"
-                  defaultSelectedKeys={['1']}
+                  defaultSelectedKeys={selectedKey}
                   selectedKeys={selectedKey}
                 >
-                  <Menu.Item key="1" icon={<UserOutlined />}>
-                    <NavLink to="/admin/users">Users</NavLink>
-                  </Menu.Item>
                   <Menu.SubMenu
                     key="sub1"
                     icon={<DesktopOutlined />}
                     title="Films"
                   >
-                    <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                      <NavLink to="/admin/films">Films</NavLink>
+                    <Menu.Item key="1" icon={<VideoCameraOutlined />}>
+                      <NavLink to="/films">Films</NavLink>
                     </Menu.Item>
-                    <Menu.Item key="3" icon={<VideoCameraAddOutlined />}>
-                      <NavLink to="/admin/films/addnew">Add new</NavLink>
+                    <Menu.Item key="2" icon={<VideoCameraAddOutlined />}>
+                      <NavLink to="/films/addnew">Add new</NavLink>
                     </Menu.Item>
                   </Menu.SubMenu>
 
+                  <Menu.Item key="3" icon={<UserOutlined />}>
+                    <NavLink to="/users">Users</NavLink>
+                  </Menu.Item>
                   {/* <Menu.Item key="4" icon={<DesktopOutlined />}>
                     <NavLink to="/admin/showtimes">Showtime</NavLink>
                   </Menu.Item> */}

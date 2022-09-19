@@ -27,7 +27,7 @@ export default function Edit(props) {
   // console.log(movieInfo);
 
   const Editsuccess = () => {
-    history.push("/admin/films");
+    history.push("/films");
   };
   const formik = useFormik({
     enableReinitialize: true,

@@ -78,7 +78,7 @@ export default function Films(props) {
           <NavLink
             key={1}
             className=" text-indigo-800 mr-2 text-2xl"
-            to={`/admin/films/edit/${film.maPhim}`}
+            to={`/films/edit/${film.maPhim}`}
           >
             <EditOutlined />
           </NavLink>
@@ -98,7 +98,7 @@ export default function Films(props) {
           <NavLink
             key={3}
             className=" text-lime-700 ml-2 text-2xl"
-            to={`/admin/films/showtime/${film.maPhim}`}
+            to={`/films/showtime/${film.maPhim}`}
           >
             <CalendarOutlined />
           </NavLink>
@@ -145,7 +145,7 @@ export default function Films(props) {
       <Button
         className="addMovie"
         onClick={() => {
-          props.history.push("/admin/films/addnew");
+          props.history.push("/films/addnew");
           props.setSelectedKey("3");
           localStorage.setItem("keyMenu", "3");
         }}

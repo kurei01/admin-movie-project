@@ -22,7 +22,7 @@ export default function Addnew(props) {
   const history = useHistory();
 
   const AddNewsuccess = () => {
-    history.push("/admin/films");
+    history.push("/films");
   };
 
   const formik = useFormik({
