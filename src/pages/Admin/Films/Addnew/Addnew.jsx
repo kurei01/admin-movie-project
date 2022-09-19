@@ -177,7 +177,7 @@ export default function Addnew(props) {
           <img src={imgSrc} alt="..." />
         </Form.Item>
 
-        <Form.Item className="text-end mr-60">
+        <Form.Item className="text-end mr-32">
           <Button className=" addNew" htmlType="submit">
             Add Movie
           </Button>

@@ -7,4 +7,16 @@
     margin-left: 4%;
     padding-left: 10px;
   }
+
+  .addShowTime {
+    background-color: #319da0;
+    color: #fff5e1;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    &:hover {
+      color: #319da0;
+      background-color: #fff5e1;
+    }
+  }
 }

@@ -1,14 +1,28 @@
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Cascader, DatePicker, Form, InputNumber } from "antd";
 import React from "react";
 import "./ShowTime.scss";
 
 export default function ShowTime() {
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  // hệ thống rạp
+  const onChangeCinema = (value: string[]) => {
+    console.log(value);
+  };
+  // cụp rạp
+  const onChangeCineplex = (value: string[]) => {
+    console.log(value);
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+  const onChangeShowDateShowTime = (value, dateString) => {
+    console.log("Selected Time: ", value);
+    console.log("Formatted Selected Time: ", dateString);
+  };
+
+  const onOk = (value) => {
+    console.log("onOk: ", value);
+  };
+
+  const onChangeInputNumber = (value) => {
+    console.log('changed', value);
   };
 
   return (
@@ -17,65 +31,43 @@ export default function ShowTime() {
         create showtimes
       </h3>
       <Form
-        name="basic"
+        // onSubmitCapture={formik.handleSubmit}
         labelCol={{
-          span: 8,
+          span: 6,
         }}
         wrapperCol={{
-          span: 16,
+          span: 8,
         }}
-        initialValues={{
-          remember: true,
-        }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
+        layout="horizontal"
+        size="default"
       >
-        <Form.Item
-          label="Username"
-          name="username"
-          rules={[
-            {
-              required: true,
-              message: "Please input your username!",
-            },
-          ]}
-        >
-          <Input />
+        <Form.Item label="Cinema">
+          <Cascader
+            options={[{ label: "aa", value: "aaa" }]}
+            onChange={onChangeCinema}
+            placeholder="select cinema"
+          />{" "}
         </Form.Item>
 
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-          ]}
-        >
-          <Input.Password />
+        <Form.Item label="Cineplex">
+          <Cascader
+            options={[{ label: "aa", value: "aaa" }]}
+            onChange={onChangeCineplex}
+            placeholder="select cineplex"
+          />{" "}
         </Form.Item>
 
-        <Form.Item
-          name="remember"
-          valuePropName="checked"
-          wrapperCol={{
-            offset: 8,
-            span: 16,
-          }}
-        >
-          <Checkbox>Remember me</Checkbox>
+        <Form.Item label="Show date, show time">
+          <DatePicker showTime onChange={onChangeShowDateShowTime} onOk={onOk} />
         </Form.Item>
 
-        <Form.Item
-          wrapperCol={{
-            offset: 8,
-            span: 16,
-          }}
-        >
-          <Button type="primary" htmlType="submit">
-            Submit
+        <Form.Item label="Show date, show time">
+          <InputNumber min={75000} max={150000} onChange={onChangeInputNumber} />
+        </Form.Item>
+
+        <Form.Item className="text-end">
+          <Button className="addShowTime" htmlType="submit">
+            create showtimes
           </Button>
         </Form.Item>
       </Form>
