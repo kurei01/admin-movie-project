@@ -2,13 +2,9 @@ import { FILMGROUPID } from "util/settings/config";
 import { BaseService } from "./BaseService";
 
 export class MovieManagerService extends BaseService {
-  constructor() {
-    super();
-  }
-
-  getListBanner = () => {
-    return this.get(`/api/QuanLyPhim/LayDanhSachBanner`);
-  };
+  // constructor() {
+  //   super();
+  // }
 
   fetchMovies = (nameMovie = "") => {
     return nameMovie.trim() !== ""
@@ -30,6 +26,8 @@ export class MovieManagerService extends BaseService {
   deleteMovie = (id) => {
     return this.delete(`/api/QuanLyPhim/XoaPhim?maPhim=${id}`);
   };
+
+
 }
 
 export const movieManagerService = new MovieManagerService();

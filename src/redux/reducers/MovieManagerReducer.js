@@ -1,6 +1,4 @@
 import {
-  SET_FILM_PLAYING,
-  SET_FILM_UPCOMING,
   SET_MOVIES,
   SET_MOVIE_INFO,
 } from "redux/actions/types/MovieManagerType";
@@ -36,22 +34,7 @@ export const MovieManagerReducer = (state = initialState, action) => {
       state.lstFilmDefault = action.payload;
       return { ...state };
     }
-
-    case SET_FILM_PLAYING: {
-      state.filmIsPlaying = !state.filmIsPlaying;
-      state.lstFilm = state.lstFilmDefault.filter(
-        (film) => film.dangChieu === state.filmIsPlaying
-      );
-      return { ...state };
-    }
-
-    case SET_FILM_UPCOMING: {
-      state.filmUpComing = !state.filmUpComing;
-      state.lstFilm = state.lstFilmDefault.filter(
-        (film) => film.sapChieu === state.filmUpComing
-      );
-      return { ...state };
-    }
+    
     case SET_MOVIE_INFO: {
       state.movieInfo = action.payload;
       return { ...state };

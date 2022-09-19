@@ -4,7 +4,7 @@ import { AdminTemplate } from "templates/AdminTemplate/AdminTemplate";
 import DashBoard from "pages/Admin/DashBoard/DashBoard";
 import Films from "pages/Admin/Films/Films";
 import ShowTime from "pages/Admin/ShowTime/ShowTime";
-import Loading from "component/Loading/Loading";
+// import Loading from "component/Loading/Loading";
 import Addnew from "pages/Admin/Films/Addnew/Addnew";
 import Edit from "pages/Admin/Films/Edit/Edit";
 

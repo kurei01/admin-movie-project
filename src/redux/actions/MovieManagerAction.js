@@ -21,6 +21,7 @@ export const addMovieByUploadImageAction = (formData, AddNewsuccess) => {
       const result = await movieManagerService.addMovieByUploadImage(formData);
       alert("add movie successfull");
       AddNewsuccess();
+      console.log("addMovie", result);
     } catch (error) {
       console.log("error", error.response?.data);
     }

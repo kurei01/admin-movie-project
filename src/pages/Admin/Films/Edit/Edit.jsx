@@ -98,6 +98,7 @@ export default function Edit(props) {
   useEffect(() => {
     let id = props.match.params.id;
     dispatch(getMovieInfoAction(id));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

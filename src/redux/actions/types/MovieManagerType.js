@@ -1,5 +1,3 @@
 export const SET_MOVIES = "SET_MOVIES";
-export const SET_FILM_PLAYING = "SET_FILM_PLAYING";
-export const SET_FILM_UPCOMING = "SET_FILM_UPCOMING";
 
 export const SET_MOVIE_INFO = "SET_MOVIE_INFO";

@@ -114,6 +114,7 @@ export default function Films(props) {
   // };
   
   //delay search with useDebounce :>>
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debounceSearch = useCallback(
     debounce((value) => dispatch(fetchMoviesAction(value)), 500),
     []
@@ -128,6 +129,7 @@ export default function Films(props) {
 
   useEffect(() => {
     dispatch(fetchMoviesAction());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

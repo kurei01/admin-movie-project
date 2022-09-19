@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { ACCESS_TOKEN, DOMAIN, TOKEN, TOKEN_CYBER } from "util/settings/config";
+import { ACCESS_TOKEN, DOMAIN, TOKEN_CYBER } from "util/settings/config";
 
 // PUT JSON ve backend
 export class BaseService {

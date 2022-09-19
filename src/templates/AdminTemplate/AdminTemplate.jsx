@@ -4,7 +4,6 @@ import {
   DesktopOutlined,
   UserOutlined,
   VideoCameraOutlined,
-  FileOutlined,
   VideoCameraAddOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
