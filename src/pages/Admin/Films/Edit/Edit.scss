@@ -1,0 +1,41 @@
+.Edit {
+    .title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-top: 16px;
+      margin-bottom: 20px;
+      margin-left: 4%;
+      padding-left: 10px;
+    }
+    img {
+      width: 150px;
+      height: 150px;
+    }
+    .error {
+      margin-bottom: -1rem;
+      margin-top: 5px;
+    }
+    .ant-switch {
+      background-color: #fff;
+    }
+    .ant-switch-checked {
+      background-color: #645caa;
+    }
+    .ant-switch-handle {
+      &::before {
+        background-color: #bface0;
+      }
+    }
+    .update{
+      background-color: #319DA0;
+      color: #FFF5E1;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      &:hover {
+        color: #319DA0;
+        background-color: #FFF5E1;
+      }
+    }
+  }
+  
