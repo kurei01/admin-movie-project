@@ -146,8 +146,8 @@ export default function Films(props) {
         className="addMovie"
         onClick={() => {
           props.history.push("/films/addnew");
-          props.setSelectedKey("3");
-          localStorage.setItem("keyMenu", "3");
+          props.setSelectedKey("2");
+          localStorage.setItem("keyMenu", "2");
         }}
       >
         Add Movie
