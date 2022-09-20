@@ -28,13 +28,13 @@ export default function ShowTime(props) {
 
   const formik = useFormik({
     initialValues: {
-      maPhim: +props.match.params.id,
+      maPhim: props.match.params.id,
       ngayChieuGioChieu: "",
       maRap: "",
       giaVe: "",
     },
     onSubmit: (value) => {
-      console.log(value);
+      console.log(value); 
       dispatch(createShowTimesAction(value, createShowtimesSuccess));
     },
     validationSchema: schema,

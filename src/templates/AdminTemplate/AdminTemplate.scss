@@ -5,9 +5,15 @@
 
   .site-layout {
     .header {
+      .logo {
+        text-align: center;
+        
+        img{
+          display: inline-block;
+        }
+      }
     }
     .content {
-
     }
   }
 }

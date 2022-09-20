@@ -40,7 +40,7 @@ export class MovieManagerService extends BaseService {
   };
 
   createShowtimes = (formData) => {
-    return this.post(`/api/QuanLyDatVe/TaoLichChieu`);
+    return this.post(`/api/QuanLyDatVe/TaoLichChieu`, formData);
   };
 }
 

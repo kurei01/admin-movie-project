@@ -7,7 +7,8 @@ import {
   VideoCameraAddOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
-import logo from "assets/adminLogo.jpg";
+import logoSider from "assets/adminLogo.jpg";
+// import logo from "assets/CyberBookingMovie.png";
 import "./AdminTemplate.scss";
 const { Header, Sider, Content } = Layout;
 
@@ -57,8 +58,8 @@ export const AdminTemplate = (props) => {
                 collapsed={collapsed}
                 onCollapse={(value) => setCollapsed(value)}
               >
-                <div className="logo p-5">
-                  <img src={logo} alt="logo" />
+                <div className="logoSider p-5">
+                  <img src={logoSider} alt="logosider" />
                 </div>
                 <Menu
                   onClick={(e) => {
@@ -68,25 +69,32 @@ export const AdminTemplate = (props) => {
                   theme="light"
                   mode="inline"
                   defaultSelectedKeys={selectedKey}
-                  selectedKeys={selectedKey}  
-                  defaultOpenKeys={['sub1']}
+                  selectedKeys={selectedKey}
+                  defaultOpenKeys={["sub1"]}
                 >
+                  {/* movie */}
                   <Menu.SubMenu
                     key="sub1"
                     icon={<DesktopOutlined />}
-                    title="Films"
+                    title="Movie Manager"
                   >
                     <Menu.Item key="1" icon={<VideoCameraOutlined />}>
-                      <NavLink to="/films">Films</NavLink>
+                      <NavLink to="/films">Movies</NavLink>
                     </Menu.Item>
                     <Menu.Item key="2" icon={<VideoCameraAddOutlined />}>
-                      <NavLink to="/films/addnew">Add new</NavLink>
+                      <NavLink to="/films/addnew">Add movie</NavLink>
                     </Menu.Item>
                   </Menu.SubMenu>
-
-                  <Menu.Item key="3" icon={<UserOutlined />}>
-                    <NavLink to="/users">Users</NavLink>
-                  </Menu.Item>
+                  {/* user */}
+                  <Menu.SubMenu
+                    key="sub2"
+                    icon={<UserOutlined />}
+                    title="User Manager"
+                  >
+                    <Menu.Item key="3" icon={<UserOutlined />}>
+                      <NavLink to="/users">Users</NavLink>
+                    </Menu.Item>
+                  </Menu.SubMenu>
                   {/* <Menu.Item key="4" icon={<DesktopOutlined />}>
                     <NavLink to="/admin/showtimes">Showtime</NavLink>
                   </Menu.Item> */}
