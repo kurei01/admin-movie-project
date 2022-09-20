@@ -22,8 +22,6 @@ const initialState = {
     },
   ],
   lstFilmDefault: [],
-  filmIsPlaying: true,
-  filmUpComing: true,
   movieInfo: {},
 };
 
@@ -34,7 +32,7 @@ export const MovieManagerReducer = (state = initialState, action) => {
       state.lstFilmDefault = action.payload;
       return { ...state };
     }
-    
+
     case SET_MOVIE_INFO: {
       state.movieInfo = action.payload;
       return { ...state };

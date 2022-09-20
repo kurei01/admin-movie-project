@@ -3,8 +3,7 @@ import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { AdminTemplate } from "templates/AdminTemplate/AdminTemplate";
 import DashBoard from "pages/Admin/DashBoard/DashBoard";
 import Films from "pages/Admin/Films/Films";
-import ShowTime from "pages/Admin/ShowTime/ShowTime";
-// import Loading from "component/Loading/Loading";
+import ShowTime from "pages/Admin/Films/ShowTime/ShowTime";
 import Addnew from "pages/Admin/Films/Addnew/Addnew";
 import Edit from "pages/Admin/Films/Edit/Edit";
 
@@ -14,7 +13,6 @@ function App() {
   return (
     <div className="App">
       <Router history={history}>
-        {/* <Loading /> */}
         <Switch>
           <AdminTemplate path="/" exact Component={Films} />
           <AdminTemplate path="/films" exact Component={Films} />

@@ -15,7 +15,7 @@ const { Search } = Input;
 
 export default function Films(props) {
   const dispatch = useDispatch();
-  const moviesDefault = useSelector((state) => state.MovieManagerReducer);
+  const moviesDefault = useSelector((state) => state.MovieManagerReducer.lstFilm);
   // console.log(moviesDefault);
 
   const columns = [
@@ -106,7 +106,7 @@ export default function Films(props) {
       ),
     },
   ];
-  const data = moviesDefault.lstFilm;
+  const data = moviesDefault;
 
   // const onSearch = (value) => {
   //   //call api

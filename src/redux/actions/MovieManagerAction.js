@@ -1,4 +1,5 @@
 import { movieManagerService } from "services/MovieManagerService.js";
+import { SET_CINEMA, SET_CINEPLEX } from "./types/CinemaManagerType";
 import { SET_MOVIES, SET_MOVIE_INFO } from "./types/MovieManagerType";
 
 export const fetchMoviesAction = (nameMovie = "") => {
@@ -67,6 +68,47 @@ export const deleteMovieAction = (id) => {
       dispatch(fetchMoviesAction());
     } catch (error) {
       console.log("error", error);
+    }
+  };
+};
+
+export const getCinemaInfoAction = (cinemaID = "") => {
+  return async (dispatch) => {
+    try {
+      const res = await movieManagerService.getCinemaInfo(cinemaID);
+      dispatch({
+        type: SET_CINEMA,
+        payload: res.data.content,
+      });
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+};
+
+export const getCineplexInfoAction = (cinemaID = "") => {
+  return async (dispatch) => {
+    try {
+      const res = await movieManagerService.getCineplexInfo(cinemaID);
+      dispatch({
+        type: SET_CINEPLEX,
+        payload: res.data.content,
+      });
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+};
+
+export const createShowTimesAction = (formData, createShowtimesSuccess) => {
+  return async (dispatch) => {
+    try {
+      const result = await movieManagerService.createShowtimes(formData);
+      alert("add showtimes successfull");
+      createShowtimesSuccess();
+      console.log("addMovie", result);
+    } catch (error) {
+      console.log("error", error.response?.data);
     }
   };
 };

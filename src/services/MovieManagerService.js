@@ -27,7 +27,21 @@ export class MovieManagerService extends BaseService {
     return this.delete(`/api/QuanLyPhim/XoaPhim?maPhim=${id}`);
   };
 
+  getCinemaInfo = (cinemaID) => {
+    return this.get(
+      `/api/QuanLyRap/LayThongTinHeThongRap?maHeThongRap=${cinemaID}`
+    );
+  };
 
+  getCineplexInfo = (cinemaID) => {
+    return this.get(
+      `/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${cinemaID}`
+    );
+  };
+
+  createShowtimes = (formData) => {
+    return this.post(`/api/QuanLyDatVe/TaoLichChieu`);
+  };
 }
 
 export const movieManagerService = new MovieManagerService();
