@@ -25,7 +25,7 @@ export default function ShowTime(props) {
   const cineplex = useSelector((state) => state.CinemaManagerReducer.cineplex);
 
   const createShowtimesSuccess = () => {
-    history.push("./films");
+    history.push("/films");
   };
 
   const formik = useFormik({
