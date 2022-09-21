@@ -12,7 +12,7 @@ export class BaseService {
       data: model,
       headers: {
         TokenCybersoft: TOKEN_CYBER,
-        Authorization: "Bearer " + ACCESS_TOKEN, // JWT
+        Authorization: "Bearer " + localStorage.getItem(ACCESS_TOKEN), // JWT
       },
     });
   };
@@ -25,7 +25,7 @@ export class BaseService {
       data: model,
       headers: {
         TokenCybersoft: TOKEN_CYBER,
-        Authorization: "Bearer " + ACCESS_TOKEN, // JWT
+        Authorization: "Bearer " + localStorage.getItem(ACCESS_TOKEN), // JWT
       },
     });
   };
@@ -37,7 +37,7 @@ export class BaseService {
       method: "GET",
       headers: {
         TokenCybersoft: TOKEN_CYBER,
-        Authorization: "Bearer " + ACCESS_TOKEN, // JWT
+        Authorization: "Bearer " + localStorage.getItem(ACCESS_TOKEN), // JWT
       },
     });
   };
@@ -49,7 +49,7 @@ export class BaseService {
       method: "DELETE",
       headers: {
         TokenCybersoft: TOKEN_CYBER,
-        Authorization: "Bearer " + ACCESS_TOKEN, // JWT
+        Authorization: "Bearer " + localStorage.getItem(ACCESS_TOKEN), // JWT
       },
     });
   };

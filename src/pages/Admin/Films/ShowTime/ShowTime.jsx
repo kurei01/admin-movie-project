@@ -21,8 +21,10 @@ const schema = yup.object().shape({
 export default function ShowTime(props) {
   const dispatch = useDispatch();
   const history = useHistory();
-  const cinemas = useSelector((state) => state.CinemaManagerReducer.cinema);
-  const cineplex = useSelector((state) => state.CinemaManagerReducer.cineplex);
+  const cinemas = useSelector((state) => state.MovieManagerReducer.cinema);
+  const cineplex = useSelector((state) => state.MovieManagerReducer.cineplex);
+
+  let urlParams = new URLSearchParams(props.location.search);
 
   const createShowtimesSuccess = () => {
     history.push("/films");
@@ -73,8 +75,8 @@ export default function ShowTime(props) {
 
   return (
     <div className="showTime">
-      <h3 className="title w-48 p-1 text-indigo-800 rounded-md">
-        create showtimes
+      <h3 className="title p-1 text-indigo-800 rounded-md">
+        create showtimes - {urlParams.get("name")}
       </h3>
       <Form
         // onSubmitCapture={formik.handleSubmit}

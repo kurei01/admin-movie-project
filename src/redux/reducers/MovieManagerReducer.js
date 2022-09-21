@@ -1,4 +1,6 @@
 import {
+  SET_CINEMA,
+  SET_CINEPLEX,
   SET_MOVIES,
   SET_MOVIE_INFO,
 } from "redux/actions/types/MovieManagerType";
@@ -23,6 +25,8 @@ const initialState = {
   ],
   lstFilmDefault: [],
   movieInfo: {},
+  cinema: [],
+  cineplex: [],
 };
 
 export const MovieManagerReducer = (state = initialState, action) => {
@@ -35,6 +39,15 @@ export const MovieManagerReducer = (state = initialState, action) => {
 
     case SET_MOVIE_INFO: {
       state.movieInfo = action.payload;
+      return { ...state };
+    }
+    case SET_CINEMA: {
+      state.cinema = action.payload;
+      return { ...state };
+    }
+
+    case SET_CINEPLEX: {
+      state.cineplex = action.payload;
       return { ...state };
     }
     default: {

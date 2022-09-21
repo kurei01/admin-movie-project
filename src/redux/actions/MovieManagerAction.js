@@ -1,6 +1,25 @@
 import { movieManagerService } from "services/MovieManagerService.js";
-import { SET_CINEMA, SET_CINEPLEX } from "./types/CinemaManagerType";
-import { SET_MOVIES, SET_MOVIE_INFO } from "./types/MovieManagerType";
+import {
+  SET_MOVIES,
+  SET_MOVIE_INFO,
+  SET_CINEMA,
+  SET_CINEPLEX,
+} from "./types/MovieManagerType";
+//setAccessToken
+export const getAccessTokenAction = () => {
+  const account = {
+    taiKhoan: "doremon",
+    matKhau: "doremon",
+  };
+  return async (dispatch) => {
+    try {
+      const res = await movieManagerService.getAccessToken(account);
+      localStorage.setItem("accessToken", res.data.content.accessToken);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+};
 
 export const fetchMoviesAction = (nameMovie = "") => {
   return async (dispatch) => {

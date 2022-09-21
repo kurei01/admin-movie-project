@@ -6,6 +6,10 @@ export class MovieManagerService extends BaseService {
   //   super();
   // }
 
+  getAccessToken = (account) => {
+    return this.post("/api/QuanLyNguoiDung/DangNhap", account);
+  };
+
   fetchMovies = (nameMovie = "") => {
     return nameMovie.trim() !== ""
       ? this.get(

@@ -2,29 +2,22 @@ import React, { useCallback, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Button, Table } from "antd";
 import { Input } from "antd";
-import {
-  EditOutlined,
-  DeleteOutlined,
-  CalendarOutlined,
-} from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, CalendarOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteMovieAction,
   fetchMoviesAction,
-  getAccessTokenAction,
 } from "redux/actions/MovieManagerAction";
-import "./Films.scss";
+import "./Users.scss";
 import { debounce } from "lodash";
 
 const { Search } = Input;
 
 export default function Films(props) {
   const dispatch = useDispatch();
-  const moviesDefault = useSelector(
-    (state) => state.MovieManagerReducer.lstFilm
-  );
+  const moviesDefault = useSelector((state) => state.MovieManagerReducer.lstFilm);
   // console.log(moviesDefault);
-  
+
   const columns = [
     {
       title: "ID",
@@ -105,7 +98,7 @@ export default function Films(props) {
           <NavLink
             key={3}
             className=" text-lime-700 ml-2 text-2xl"
-            to={`/films/showtime/${film.maPhim}?name=${film.tenPhim}`}
+            to={`/films/showtime/${film.maPhim}`}
           >
             <CalendarOutlined />
           </NavLink>
@@ -119,7 +112,7 @@ export default function Films(props) {
   //   //call api
   //   dispatch(fetchMoviesAction(value));
   // };
-
+  
   //delay search with useDebounce :>>
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debounceSearch = useCallback(
@@ -136,14 +129,13 @@ export default function Films(props) {
 
   useEffect(() => {
     dispatch(fetchMoviesAction());
-    dispatch(getAccessTokenAction());
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div className="container mx-auto Films text-center">
-      <h1 className="w-44 p-1 text-indigo-800 font-semibold rounded-md mt-2 text-2xl mb-4 ">
-        Movie Manager
+    <div className="container mx-auto Users text-center">
+      <h1 className="w-44 p-1 text-cyan-600 font-semibold rounded-md mt-2 text-2xl mb-4 ">
+        User Manager
       </h1>
       <Search
         className="w-1/3 mb-5"

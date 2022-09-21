@@ -37,7 +37,7 @@ export const AdminTemplate = (props) => {
 
   const operations = (
     <Fragment>
-      <h1 className="text-indigo-100 text-center font-bold text-2xl pt-4">
+      <h1 className="text-cyan-100 text-center font-bold text-2xl pt-4">
         Admin BookingMovie
       </h1>
     </Fragment>
