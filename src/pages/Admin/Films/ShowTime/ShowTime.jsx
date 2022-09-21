@@ -1,8 +1,9 @@
 import { Button, DatePicker, Form, InputNumber, Select } from "antd";
 import { useFormik } from "formik";
 import moment from "moment";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   createShowTimesAction,
   getCinemaInfoAction,
@@ -19,11 +20,12 @@ const schema = yup.object().shape({
 
 export default function ShowTime(props) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const cinemas = useSelector((state) => state.CinemaManagerReducer.cinema);
   const cineplex = useSelector((state) => state.CinemaManagerReducer.cineplex);
 
   const createShowtimesSuccess = () => {
-    props.history.push("./films");
+    history.push("./films");
   };
 
   const formik = useFormik({
@@ -34,7 +36,7 @@ export default function ShowTime(props) {
       giaVe: "",
     },
     onSubmit: (value) => {
-      console.log(value); 
+      // console.log(value);
       dispatch(createShowTimesAction(value, createShowtimesSuccess));
     },
     validationSchema: schema,
