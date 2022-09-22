@@ -5,6 +5,7 @@ import {
   UserOutlined,
   VideoCameraOutlined,
   VideoCameraAddOutlined,
+  UserAddOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import logoSider from "assets/adminLogo.jpg";
@@ -94,10 +95,10 @@ export const AdminTemplate = (props) => {
                     <Menu.Item key="3" icon={<UserOutlined />}>
                       <NavLink to="/users">Users</NavLink>
                     </Menu.Item>
+                    <Menu.Item key="4" icon={<UserAddOutlined />}>
+                      <NavLink to="/users/addnew">Add user</NavLink>
+                    </Menu.Item>
                   </Menu.SubMenu>
-                  {/* <Menu.Item key="4" icon={<DesktopOutlined />}>
-                    <NavLink to="/admin/showtimes">Showtime</NavLink>
-                  </Menu.Item> */}
                 </Menu>
               </Sider>
               <Layout className="site-layout">

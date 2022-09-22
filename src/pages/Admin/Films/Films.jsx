@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { Button, Table } from "antd";
+import { Button, Spin, Table } from "antd";
 import { Input } from "antd";
 import {
   EditOutlined,
@@ -24,7 +24,7 @@ export default function Films(props) {
     (state) => state.MovieManagerReducer.lstFilm
   );
   // console.log(moviesDefault);
-  
+
   const columns = [
     {
       title: "ID",
@@ -65,7 +65,7 @@ export default function Films(props) {
         return nameFilmA > nameFilmB;
       },
       sortDirections: ["descend"],
-      width: "20%",
+      width: "30%",
     },
     {
       title: "Description",
@@ -75,7 +75,7 @@ export default function Films(props) {
           {film.moTa.length > 50 ? film.moTa.substr(0, 50) + "..." : film.moTa}
         </>
       ),
-      width: "25%",
+      width: "30%",
     },
     {
       title: "Action",
@@ -137,7 +137,7 @@ export default function Films(props) {
   useEffect(() => {
     dispatch(fetchMoviesAction());
     dispatch(getAccessTokenAction());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -160,7 +160,13 @@ export default function Films(props) {
       >
         Add Movie
       </Button>
-      <Table columns={columns} dataSource={data} rowKey={"maPhim"} />
+      <Table
+        // loading={<Spin />}
+        columns={columns}
+        dataSource={data}
+        rowKey={"maPhim"}
+        bordered
+      />
     </div>
   );
 }

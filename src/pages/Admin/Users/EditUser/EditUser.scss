@@ -1,0 +1,34 @@
+.EditUser {
+  .title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 16px;
+    margin-bottom: 20px;
+    margin-left: 4%;
+    padding-left: 10px;
+  }
+  .ant-form{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .ant-form-item{
+    width: 45%;
+    margin: 10px 20px;
+  }
+  .error {
+    margin-bottom: -1rem;
+    margin-top: 5px;
+  }
+  .btnAddNew {
+    margin-top: 1rem;
+    background-color: #2F8F9D;
+    color: #B3E8E5;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    &:hover {
+      color: #2F8F9D;
+      background-color: #B3E8E5;
+    }
+  }
+}

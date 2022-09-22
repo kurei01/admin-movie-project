@@ -25,7 +25,6 @@ export default function ShowTime(props) {
   const cineplex = useSelector((state) => state.MovieManagerReducer.cineplex);
 
   let urlParams = new URLSearchParams(props.location.search);
-
   const createShowtimesSuccess = () => {
     history.push("/films");
   };

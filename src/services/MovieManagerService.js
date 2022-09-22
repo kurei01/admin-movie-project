@@ -1,7 +1,7 @@
 import { FILMGROUPID } from "util/settings/config";
 import { BaseService } from "./BaseService";
 
-export class MovieManagerService extends BaseService {
+class MovieManagerService extends BaseService {
   // constructor() {
   //   super();
   // }

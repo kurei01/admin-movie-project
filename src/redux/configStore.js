@@ -6,11 +6,12 @@ import {
 } from "redux";
 import thunk from "redux-thunk";
 import { MovieManagerReducer } from "./reducers/MovieManagerReducer";
+import { UserManagerReducer } from "./reducers/UserManagerReducer";
 
 const rootReducer = combineReducers({
   // State ứng dụng
   MovieManagerReducer,
-  // UserManagerReduver,
+  UserManagerReducer
 });
 
 const composeEnhancers =

@@ -1,84 +1,74 @@
 import React, { useCallback, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { Button, Table } from "antd";
+import { Button, Spin, Table } from "antd";
 import { Input } from "antd";
-import { EditOutlined, DeleteOutlined, CalendarOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteMovieAction,
-  fetchMoviesAction,
-} from "redux/actions/MovieManagerAction";
 import "./Users.scss";
 import { debounce } from "lodash";
+import {
+  deleteUserAction,
+  fetchUserListAction,
+} from "redux/actions/UserManagerAction";
 
 const { Search } = Input;
 
 export default function Films(props) {
+  const [page, setPage] = React.useState(1);
   const dispatch = useDispatch();
-  const moviesDefault = useSelector((state) => state.MovieManagerReducer.lstFilm);
-  // console.log(moviesDefault);
+  const userListDefault = useSelector(
+    (state) => state.UserManagerReducer.userList
+  );
+  // console.log(userListDefault);
 
   const columns = [
     {
-      title: "ID",
-      dataIndex: "maPhim",
-      value: (text, object) => <span>{text}</span>,
-      sorter: (a, b) => a.maPhim - b.maPhim,
-      defaultSortOrder: "descend",
-      sortDirections: ["descend"],
-      width: "7%",
+      title: "",
+      dataIndex: "index",
+      render: (value, item, index) => <>{(page - 1) * 10 + index + 1}</>,
+      // sorter: (a, b) => {
+      //   let indexA = (page - 1) * 10 + a.index + 1
+      //   let indexB = (page - 1) * 10 + b.index + 1
+
+      //   return indexA > indexB;
+      // },
+      // defaultSortOrder: "ascend",
+      // sortDirections: ["ascend"],
     },
     {
-      title: "Image",
-      dataIndex: "hinhAnh",
-      render: (text, films, index) => (
-        <>
-          <img
-            className="imageMovie mx-auto"
-            src={text}
-            alt={films.tenPhim}
-            onError={(e) => {
-              e.target.onError = null;
-              e.target.src = `https://picsum.photos/id/${index}/70/70`;
-            }}
-          />
-        </>
-      ),
-      width: "15%",
+      title: "User Name",
+      dataIndex: "taiKhoan",
       align: "center",
-      // defaultSortOrder: "descend",
-      // sorter: (a, b) => a.age - b.age,
     },
     {
-      title: "Name",
-      dataIndex: "tenPhim",
-      sorter: (a, b) => {
-        let nameFilmA = a.tenPhim.toLowerCase().trim();
-        let nameFilmB = b.tenPhim.toLowerCase().trim();
-        return nameFilmA > nameFilmB;
-      },
-      sortDirections: ["descend"],
-      width: "20%",
+      title: "Password",
+      dataIndex: "matKhau",
     },
     {
-      title: "Description",
-      dataIndex: "moTa",
-      render: (text, film) => (
-        <>
-          {film.moTa.length > 50 ? film.moTa.substr(0, 50) + "..." : film.moTa}
-        </>
-      ),
-      width: "25%",
+      title: "Full Name",
+      dataIndex: "hoTen",
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+    },
+    {
+      title: "Phone Number",
+      dataIndex: "soDT",
+    },
+    {
+      title: "Roll",
+      dataIndex: "maLoaiNguoiDung",
     },
     {
       title: "Action",
       dataIndex: "action",
-      render: (text, film) => (
+      render: (text, user) => (
         <>
           <NavLink
             key={1}
             className=" text-cyan-600 mr-2 text-2xl"
-            to={`/films/edit/${film.maPhim}`}
+            to={`/users/edit/?taikhoan=${user.taiKhoan}`}
           >
             <EditOutlined />
           </NavLink>
@@ -87,36 +77,31 @@ export default function Films(props) {
             className="text-red-600 text-2xl hover:text-lime-500 cursor-pointer "
             onClick={() => {
               if (
-                window.confirm(`are you sure to delete movie ${film.tenPhim}`)
+                window.confirm(
+                  `are you sure to delete this user: ${user.taiKhoan}`
+                )
               ) {
-                dispatch(deleteMovieAction(film.maPhim));
+                dispatch(deleteUserAction(user.taiKhoan));
               }
             }}
           >
             <DeleteOutlined />
           </span>
-          <NavLink
-            key={3}
-            className=" text-lime-700 ml-2 text-2xl"
-            to={`/films/showtime/${film.maPhim}`}
-          >
-            <CalendarOutlined />
-          </NavLink>
         </>
       ),
     },
   ];
-  const data = moviesDefault;
+  const data = userListDefault;
 
-  // const onSearch = (value) => {
-  //   //call api
-  //   dispatch(fetchMoviesAction(value));
-  // };
-  
-  //delay search with useDebounce :>>
+  const onSearch = (value) => {
+    //call api
+    dispatch(fetchUserListAction(value));
+  };
+
+  //delay search with useDebounce
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debounceSearch = useCallback(
-    debounce((value) => dispatch(fetchMoviesAction(value)), 500),
+    debounce((value) => dispatch(fetchUserListAction(value)), 500),
     []
   );
 
@@ -128,8 +113,8 @@ export default function Films(props) {
   };
 
   useEffect(() => {
-    dispatch(fetchMoviesAction());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    dispatch(fetchUserListAction());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -139,20 +124,32 @@ export default function Films(props) {
       </h1>
       <Search
         className="w-1/3 mb-5"
-        placeholder="Search movie"
+        placeholder="Search user"
         onChange={onSearchByChange}
+        onSearch={onSearch}
       />
       <Button
-        className="addMovie"
+        className="addUser"
         onClick={() => {
-          props.history.push("/films/addnew");
-          props.setSelectedKey("2");
-          localStorage.setItem("keyMenu", "2");
+          props.history.push("/users/addnew");
+          props.setSelectedKey("4");
+          localStorage.setItem("keyMenu", "4");
         }}
       >
-        Add Movie
+        Add User
       </Button>
-      <Table columns={columns} dataSource={data} rowKey={"maPhim"} />
+      <Table
+        // loading={<Spin />}
+        pagination={{
+          onChange(current) {
+            setPage(current);
+          },
+        }}
+        columns={columns}
+        dataSource={data}
+        rowKey={"taiKhoan"}
+        bordered
+      />
     </div>
   );
 }

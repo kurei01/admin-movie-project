@@ -41,7 +41,6 @@ export const addMovieByUploadImageAction = (formData, AddNewsuccess) => {
       const result = await movieManagerService.addMovieByUploadImage(formData);
       alert("add movie successfull");
       AddNewsuccess();
-      console.log("addMovie", result);
     } catch (error) {
       console.log("error", error.response?.data);
     }
@@ -55,10 +54,10 @@ export const uploadMovieUpdateAction = (formData, Editsuccess) => {
       alert("update movie successfull");
       console.log("resultEditMovie", result.data.content);
       //reload movieList
-      dispatch(fetchMoviesAction());
       Editsuccess();
+      dispatch(fetchMoviesAction());
     } catch (error) {
-      console.log("error", error);
+      console.log("error", error.response.data.content);
     }
   };
 };
@@ -125,7 +124,6 @@ export const createShowTimesAction = (formData, createShowtimesSuccess) => {
       const result = await movieManagerService.createShowtimes(formData);
       alert("add showtimes successfull");
       createShowtimesSuccess();
-      console.log("addMovieShowTime", result);
     } catch (error) {
       console.log("error", error.response?.data);
     }
