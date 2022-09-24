@@ -72,6 +72,7 @@ export const getMovieInfoAction = (id) => {
         type: SET_MOVIE_INFO,
         payload: result.data.content,
       });
+      console.log(result.data.content);
     } catch (error) {
       console.log("error", error);
     }

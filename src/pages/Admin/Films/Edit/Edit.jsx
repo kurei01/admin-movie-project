@@ -51,6 +51,7 @@ export default function Edit(props) {
       let formData = new FormData();
       for (let key in values) {
         if (key !== "hinhAnh") {
+          if (!values[key]) values[key] = false;
           formData.append(key, values[key]);
         } else {
           !!values.hinhAnh &&
@@ -65,7 +66,7 @@ export default function Edit(props) {
   });
 
   const handleChangeDatePicker = (value) => {
-    let openingDay = moment(value).format('DD/MM/YYYY');
+    let openingDay = moment(value).format("DD/MM/YYYY");
     formik.setFieldValue("ngayKhoiChieu", openingDay);
   };
 
@@ -98,12 +99,14 @@ export default function Edit(props) {
   useEffect(() => {
     let id = props.match.params.id;
     dispatch(getMovieInfoAction(id));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="Edit">
-      <h3 className="title w-40 p-1 text-indigo-800 rounded-md">Edit movie info</h3>
+      <h3 className="title w-40 p-1 text-indigo-800 rounded-md">
+        Edit movie info
+      </h3>
       <Form
         onSubmitCapture={formik.handleSubmit}
         labelCol={{
