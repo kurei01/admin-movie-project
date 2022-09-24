@@ -38,7 +38,7 @@ export const fetchMoviesAction = (nameMovie = "") => {
 export const addMovieByUploadImageAction = (formData, AddNewsuccess) => {
   return async (dispatch) => {
     try {
-      const result = await movieManagerService.addMovieByUploadImage(formData);
+      await movieManagerService.addMovieByUploadImage(formData);
       alert("add movie successfull");
       AddNewsuccess();
     } catch (error) {
@@ -57,7 +57,9 @@ export const uploadMovieUpdateAction = (formData, Editsuccess) => {
       Editsuccess();
       dispatch(fetchMoviesAction());
     } catch (error) {
-      console.log("error", error.response.data.content);
+      console.log("error update movie", error.response?.data);
+      alert(error.response?.data.content)
+      console.log(error.response);
     }
   };
 };
@@ -121,7 +123,7 @@ export const getCineplexInfoAction = (cinemaID = "") => {
 export const createShowTimesAction = (formData, createShowtimesSuccess) => {
   return async (dispatch) => {
     try {
-      const result = await movieManagerService.createShowtimes(formData);
+      await movieManagerService.createShowtimes(formData);
       alert("add showtimes successfull");
       createShowtimesSuccess();
     } catch (error) {

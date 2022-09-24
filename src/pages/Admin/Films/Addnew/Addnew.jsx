@@ -50,14 +50,14 @@ export default function Addnew(props) {
         }
       }
       //call api post formData to backend
-      dispatch(addMovieByUploadImageAction(formData,AddNewsuccess));
+      dispatch(addMovieByUploadImageAction(formData, AddNewsuccess));
     },
     validationSchema: schema,
     validateOnChange: false,
   });
 
   const handleChangeDatePicker = (value) => {
-    let openingDay = moment(value).format('DD/MM/YYYY');
+    let openingDay = moment(value).format("DD/MM/YYYY");
     formik.setFieldValue("ngayKhoiChieu", openingDay);
   };
 
@@ -90,7 +90,9 @@ export default function Addnew(props) {
 
   return (
     <div className="Addnew">
-      <h3 className="title w-40 p-1 text-indigo-800 rounded-md">Add new movie</h3>
+      <h3 className="title w-40 p-1 text-indigo-800 rounded-md">
+        Add new movie
+      </h3>
       <Form
         onSubmitCapture={formik.handleSubmit}
         labelCol={{

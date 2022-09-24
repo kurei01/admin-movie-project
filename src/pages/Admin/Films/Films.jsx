@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { Button, Spin, Table } from "antd";
+import { Button, Table } from "antd";
 import { Input } from "antd";
 import {
   EditOutlined,

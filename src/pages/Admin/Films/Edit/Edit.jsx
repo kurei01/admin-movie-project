@@ -45,8 +45,8 @@ export default function Edit(props) {
     },
     onSubmit: (values) => {
       //create formData
-      console.log(values.ngayKhoiChieu);
-      console.log(values.hinhAnh);
+      // console.log(values.ngayKhoiChieu);
+      // console.log(values.hinhAnh);
       values.maNhom = FILMGROUPID;
       let formData = new FormData();
       for (let key in values) {
@@ -65,7 +65,7 @@ export default function Edit(props) {
   });
 
   const handleChangeDatePicker = (value) => {
-    let openingDay = moment(value);
+    let openingDay = moment(value).format('DD/MM/YYYY');
     formik.setFieldValue("ngayKhoiChieu", openingDay);
   };
 

@@ -18,7 +18,7 @@ export const fetchUserListAction = (key = "") => {
 export const addNewUserAction = (values, AddUsersuccess) => {
   return async (dispatch) => {
     try {
-      const res = await userManagerService.addNewUser(values);
+      await userManagerService.addNewUser(values);
       alert("add user successfull");
       AddUsersuccess();
       dispatch(fetchUserListAction());
@@ -31,7 +31,7 @@ export const addNewUserAction = (values, AddUsersuccess) => {
 export const deleteUserAction = (taiKhoan) => {
   return async (dispatch) => {
     try {
-      const res = await userManagerService.deleteUser(taiKhoan);
+      await userManagerService.deleteUser(taiKhoan);
       alert("delete user successfull");
       dispatch(fetchUserListAction());
     } catch (error) {
@@ -57,7 +57,7 @@ export const getUserInfoAction = (taiKhoan) => {
 export const updateUserAction = (values, UpdateUsersuccess) => {
   return async (dispatch) => {
     try {
-      const res = await userManagerService.updateUser(values);
+      await userManagerService.updateUser(values);
       alert("update user successful");
       UpdateUsersuccess();
       dispatch(fetchUserListAction());

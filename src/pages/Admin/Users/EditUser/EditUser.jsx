@@ -7,7 +7,6 @@ import { FILMGROUPID } from "util/settings/config";
 import * as yup from "yup";
 import "./EditUser.scss";
 import {
-  addNewUserAction,
   getUserInfoAction,
   updateUserAction,
 } from "redux/actions/UserManagerAction";
@@ -70,6 +69,7 @@ export default function EditUser(props) {
 
   useEffect(() => {
     dispatch(getUserInfoAction(taiKhoanCurrent));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
