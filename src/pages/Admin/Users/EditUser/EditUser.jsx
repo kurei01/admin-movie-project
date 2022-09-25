@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, Form, Input, Select } from "antd";
+import { Form, Input, Modal, Select } from "antd";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -16,11 +16,7 @@ const phoneRegExp =
 
 const schema = yup.object().shape({
   taiKhoan: yup.string().required("*Trường này bắt buộc nhập"),
-  matKhau: yup
-    .string()
-    .required("*Trường này bắt buộc nhập")
-    .min(8, "*mật khẩu lớn hơn 8 ký tự")
-    .max(16, "mật khẩu nhỏ hơn 16 ký tự"),
+  matKhau: yup.string().required("*Trường này bắt buộc nhập"),
   hoTen: yup.string().required("*Trường này bắt buộc nhập"),
   email: yup
     .string()
@@ -42,7 +38,19 @@ export default function EditUser(props) {
   const taiKhoanCurrent = urlParams.get("taikhoan");
 
   const UpdateUsersuccess = () => {
-    history.push("/users");
+    Modal.success({
+      content: "update user success",
+      onOk: () => {
+        history.push("/users");
+      },
+    });
+  };
+
+  const alertError = (textError) => {
+    Modal.error({
+      title: "Error message",
+      content: textError,
+    });
   };
 
   const formik = useFormik({
@@ -57,7 +65,7 @@ export default function EditUser(props) {
     },
     onSubmit: (values) => {
       values.maNhom = FILMGROUPID;
-      dispatch(updateUserAction(values, UpdateUsersuccess));
+      dispatch(updateUserAction(values, UpdateUsersuccess, alertError));
     },
     validationSchema: schema,
     // validateOnChange: false,
@@ -69,12 +77,12 @@ export default function EditUser(props) {
 
   useEffect(() => {
     dispatch(getUserInfoAction(taiKhoanCurrent));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="EditUser">
-      <h3 className="title w-40 p-1 text-orange-600 rounded-md">
+      <h3 className=" px-3 pb-5 text-orange-700 font-semibold rounded-md mt-2 text-2xl mb-4 ">
         User - {taiKhoanCurrent}
       </h3>
       <Form onSubmitCapture={formik.handleSubmit} layout="vertical">
@@ -162,11 +170,9 @@ export default function EditUser(props) {
             value={formik.values.maLoaiNguoiDung}
           />
         </Form.Item>
-        <Form.Item>
-          <Button className="btnAddNew" htmlType="submit">
-            Update User
-          </Button>
-        </Form.Item>
+        <button className="btnAddNew py-2 px-3" htmlType="submit">
+          Update User
+        </button>
       </Form>
     </div>
   );

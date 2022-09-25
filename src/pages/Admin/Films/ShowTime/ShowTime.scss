@@ -1,22 +1,23 @@
 .showTime {
-  .title {
-    font-size: 1.25rem;
+  .ant-form-item-label > label {
     font-weight: 600;
-    margin-top: 16px;
-    margin-bottom: 20px;
-    margin-left: 4%;
-    padding-left: 10px;
+    font-size: 1rem;
   }
 
   .addShowTime {
-    background-color: #319da0;
-    color: #fff5e1;
+    background-color: #ea580c;
+    color: #fff;
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
     font-weight: 600;
+    font-size: 16px;
+    transition: all 0.4s;
+    box-shadow: 2px 7px 19px -8px rgba(92, 92, 92, 0.58);
+    -webkit-box-shadow: 2px 7px 19px -8px rgba(92, 92, 92, 0.58);
+    -moz-box-shadow: 2px 7px 19px -8px rgba(92, 92, 92, 0.58);
     &:hover {
-      color: #319da0;
-      background-color: #fff5e1;
+      color: #ffffff;
+      background-color: #ec6720;
     }
   }
   .error {

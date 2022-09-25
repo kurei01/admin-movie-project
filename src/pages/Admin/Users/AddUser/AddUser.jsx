@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Input, Select } from "antd";
+import { Form, Input, Modal, Select } from "antd";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -13,11 +13,7 @@ const phoneRegExp =
 
 const schema = yup.object().shape({
   taiKhoan: yup.string().required("*Trường này bắt buộc nhập"),
-  matKhau: yup
-    .string()
-    .required("*Trường này bắt buộc nhập")
-    .min(8, "*mật khẩu lớn hơn 8 ký tự")
-    .max(16, "mật khẩu nhỏ hơn 16 ký tự"),
+  matKhau: yup.string().required("*Trường này bắt buộc nhập"),
   hoTen: yup.string().required("*Trường này bắt buộc nhập"),
   email: yup
     .string()
@@ -34,8 +30,20 @@ export default function AddUser(props) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const AddUsersuccess = () => {
-    history.push("/users");
+  const AddNewsuccess = () => {
+    Modal.success({
+      content: "add new user success",
+      onOk: () => {
+        history.push("/users");
+      },
+    });
+  };
+
+  const alertError = (textError) => {
+    Modal.error({
+      title: "Error message",
+      content: textError,
+    });
   };
 
   const formik = useFormik({
@@ -50,7 +58,7 @@ export default function AddUser(props) {
     onSubmit: (values) => {
       values.maNhom = FILMGROUPID;
       console.log(values);
-      dispatch(addNewUserAction(values, AddUsersuccess));
+      dispatch(addNewUserAction(values, AddNewsuccess,alertError));
     },
     validationSchema: schema,
     // validateOnChange: false,
@@ -62,7 +70,7 @@ export default function AddUser(props) {
 
   return (
     <div className="AddUser">
-      <h3 className="title w-40 p-1 text-orange-600 rounded-md">
+      <h3 className=" px-3 pb-5 text-orange-700 font-semibold rounded-md mt-2 text-2xl mb-4 ">
         Add new user
       </h3>
       <Form
@@ -153,11 +161,9 @@ export default function AddUser(props) {
             name="maLoaiNguoiDung"
           />
         </Form.Item>
-        <Form.Item>
-          <Button className="btnAddNew" htmlType="submit">
-            Add User
-          </Button>
-        </Form.Item>
+        <button className="btnAddNew py-2 px-3" htmlType="submit">
+          Add User
+        </button>
       </Form>
     </div>
   );

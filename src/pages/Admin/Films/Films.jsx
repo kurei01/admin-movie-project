@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { Button, Table } from "antd";
+import { Button, Modal, Table } from "antd";
 import { Input } from "antd";
 import {
   EditOutlined,
   DeleteOutlined,
   CalendarOutlined,
+  ExclamationCircleOutlined,
 } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -25,9 +26,31 @@ export default function Films(props) {
   );
   // console.log(moviesDefault);
 
+  const Deletesuccess = () => {
+    Modal.success({
+      content: "delete Movies success",
+    });
+  };
+
+  const conFirmDelete = (nameMovie, movieID) => {
+    Modal.confirm({
+      title: `Do you Want to delete this movie: ${nameMovie}`,
+      icon: <ExclamationCircleOutlined />,
+      content: "",
+
+      onOk() {
+        dispatch(deleteMovieAction(movieID, Deletesuccess));
+      },
+
+      onCancel() {
+        console.log("Cancel");
+      },
+    });
+  };
+
   const columns = [
     {
-      title: "ID",
+      title: <span className="font-semibold uppercase">Id</span>,
       dataIndex: "maPhim",
       value: (text, object) => <span>{text}</span>,
       sorter: (a, b) => a.maPhim - b.maPhim,
@@ -36,7 +59,7 @@ export default function Films(props) {
       width: "7%",
     },
     {
-      title: "Image",
+      title: <span className="font-semibold">Image</span>,
       dataIndex: "hinhAnh",
       render: (text, films, index) => (
         <>
@@ -57,7 +80,7 @@ export default function Films(props) {
       // sorter: (a, b) => a.age - b.age,
     },
     {
-      title: "Name",
+      title: <span className="font-semibold">Name</span>,
       dataIndex: "tenPhim",
       sorter: (a, b) => {
         let nameFilmA = a.tenPhim.toLowerCase().trim();
@@ -68,7 +91,7 @@ export default function Films(props) {
       width: "30%",
     },
     {
-      title: "Description",
+      title: <span className="font-semibold">Description</span>,
       dataIndex: "moTa",
       render: (text, film) => (
         <>
@@ -78,7 +101,7 @@ export default function Films(props) {
       width: "30%",
     },
     {
-      title: "Action",
+      title: <span className="font-semibold">Action</span>,
       dataIndex: "action",
       render: (text, film) => (
         <>
@@ -93,11 +116,7 @@ export default function Films(props) {
             key={2}
             className="text-red-600 text-2xl hover:text-lime-500 cursor-pointer "
             onClick={() => {
-              if (
-                window.confirm(`are you sure to delete movie ${film.tenPhim}`)
-              ) {
-                dispatch(deleteMovieAction(film.maPhim));
-              }
+              conFirmDelete(film.tenPhim, film.maPhim);
             }}
           >
             <DeleteOutlined />
@@ -142,9 +161,9 @@ export default function Films(props) {
 
   return (
     <div className="container mx-auto Films text-center">
-      <h1 className="w-44 p-1 text-indigo-800 font-semibold rounded-md mt-2 text-2xl mb-4 ">
+      <h3 className="text-left px-3 pb-5 text-orange-700 font-semibold rounded-md mt-2 text-2xl mb-4 ">
         Movie Manager
-      </h1>
+      </h3>
       <Search
         className="w-1/3 mb-5"
         placeholder="Search movie"
@@ -160,13 +179,7 @@ export default function Films(props) {
       >
         Add Movie
       </Button>
-      <Table
-        // loading={<Spin />}
-        columns={columns}
-        dataSource={data}
-        rowKey={"maPhim"}
-        bordered
-      />
+      <Table columns={columns} dataSource={data} rowKey={"maPhim"} bordered />
     </div>
   );
 }

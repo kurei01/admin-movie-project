@@ -1,4 +1,12 @@
-import { Button, DatePicker, Form, Input, InputNumber, Switch } from "antd";
+import {
+  Button,
+  DatePicker,
+  Form,
+  Input,
+  InputNumber,
+  Modal,
+  Switch,
+} from "antd";
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import moment from "moment";
@@ -22,7 +30,19 @@ export default function Addnew(props) {
   const history = useHistory();
 
   const AddNewsuccess = () => {
-    history.push("/films");
+    Modal.success({
+      content: "add new Movies success",
+      onOk: () => {
+        history.push("/films");
+      },
+    });
+  };
+
+  const alertError = (textError) => {
+    Modal.error({
+      title: "Error message",
+      content: textError,
+    });
   };
 
   const formik = useFormik({
@@ -50,7 +70,9 @@ export default function Addnew(props) {
         }
       }
       //call api post formData to backend
-      dispatch(addMovieByUploadImageAction(formData, AddNewsuccess));
+      dispatch(
+        addMovieByUploadImageAction(formData, AddNewsuccess, alertError)
+      );
     },
     validationSchema: schema,
     validateOnChange: false,
@@ -90,8 +112,8 @@ export default function Addnew(props) {
 
   return (
     <div className="Addnew">
-      <h3 className="title w-40 p-1 text-indigo-800 rounded-md">
-        Add new movie
+      <h3 className=" px-3 pb-5 text-orange-700 font-semibold rounded-md mt-2 text-2xl mb-4 ">
+        Add New Movie
       </h3>
       <Form
         onSubmitCapture={formik.handleSubmit}

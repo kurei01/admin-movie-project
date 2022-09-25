@@ -1,4 +1,12 @@
-import { Button, DatePicker, Form, Input, InputNumber, Switch } from "antd";
+import {
+  Button,
+  DatePicker,
+  Form,
+  Input,
+  InputNumber,
+  Modal,
+  Switch,
+} from "antd";
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import moment from "moment";
@@ -27,8 +35,21 @@ export default function Edit(props) {
   // console.log(movieInfo);
 
   const Editsuccess = () => {
-    history.push("/films");
+    Modal.success({
+      content: "Update Movies success",
+      onOk: () => {
+        history.push("/films");
+      },
+    });
   };
+
+  const alertError = (textError) => {
+    Modal.error({
+      title: "Error message",
+      content: textError,
+    });
+  };
+
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -59,7 +80,7 @@ export default function Edit(props) {
         }
       }
       //call api post formData to backend
-      dispatch(uploadMovieUpdateAction(formData, Editsuccess));
+      dispatch(uploadMovieUpdateAction(formData, Editsuccess, alertError));
     },
     validationSchema: schema,
     validateOnChange: false,
@@ -104,7 +125,7 @@ export default function Edit(props) {
 
   return (
     <div className="Edit">
-      <h3 className="title w-40 p-1 text-indigo-800 rounded-md">
+      <h3 className=" px-3 pb-5 text-orange-700 font-semibold rounded-md mt-2 text-2xl mb-4 ">
         Edit movie info
       </h3>
       <Form

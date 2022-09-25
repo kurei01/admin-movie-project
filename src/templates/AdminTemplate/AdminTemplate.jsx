@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Route, NavLink } from "react-router-dom";
+import { Route, NavLink, useHistory } from "react-router-dom";
 import {
   DesktopOutlined,
   UserOutlined,
@@ -8,8 +8,8 @@ import {
   UserAddOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
-import logoSider from "assets/adminLogo.jpg";
-// import logo from "assets/CyberBookingMovie.png";
+// import logoSider from "assets/adminLogo.jpg";
+import logo from "assets/CyberBookingMovie.png";
 import "./AdminTemplate.scss";
 const { Header, Sider, Content } = Layout;
 
@@ -35,10 +35,11 @@ export const AdminTemplate = (props) => {
   //   alert("bạn không có quyền vào trang này");
   //   return <Redirect to="/" />;
   // }
+  const history = useHistory();
 
   const operations = (
     <Fragment>
-      <h1 className="text-cyan-100 text-center font-bold text-2xl pt-4">
+      <h1 className="text-white text-center font-bold text-2xl pt-4">
         Admin BookingMovie
       </h1>
     </Fragment>
@@ -60,7 +61,15 @@ export const AdminTemplate = (props) => {
                 onCollapse={(value) => setCollapsed(value)}
               >
                 <div className="logoSider p-5">
-                  <img src={logoSider} alt="logosider" />
+                  <img
+                    src={logo}
+                    alt="logosider"
+                    className="cursor-pointer"
+                    onClick={() => {
+                      history.push("/");
+                      window.location.reload();
+                    }}
+                  />
                 </div>
                 <Menu
                   onClick={(e) => {
@@ -102,10 +111,10 @@ export const AdminTemplate = (props) => {
                 </Menu>
               </Sider>
               <Layout className="site-layout">
-                <Header className="header site-layout-background bg-indigo-500 mb-2 ml-2">
+                <Header className="header site-layout-background bg-orange-600 mb-2 ml-2">
                   {operations}
                 </Header>
-                <Content className="site-layout-background content m-2 p-3 bg-indigo-100">
+                <Content className="site-layout-background content m-2 p-3 bg-white">
                   {
                     <Component
                       setSelectedKey={setSelectedKey}

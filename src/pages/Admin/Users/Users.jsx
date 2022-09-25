@@ -1,8 +1,12 @@
 import React, { useCallback, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { Button, Table } from "antd";
+import { Button, Modal, Table } from "antd";
 import { Input } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  DeleteOutlined,
+  ExclamationCircleOutlined,
+} from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import "./Users.scss";
 import { debounce } from "lodash";
@@ -20,6 +24,28 @@ export default function Films(props) {
     (state) => state.UserManagerReducer.userList
   );
   // console.log(userListDefault);
+
+  const Deletesuccess = () => {
+    Modal.success({
+      content: "delete User success",
+    });
+  };
+
+  const conFirmDelete = (taiKhoan) => {
+    Modal.confirm({
+      title: `Do you Want to delete this user: ${taiKhoan}`,
+      icon: <ExclamationCircleOutlined />,
+      content: "",
+
+      onOk() {
+        dispatch(deleteUserAction(taiKhoan, Deletesuccess));
+      },
+
+      onCancel() {
+        console.log("Cancel");
+      },
+    });
+  };
 
   const columns = [
     {
@@ -76,13 +102,7 @@ export default function Films(props) {
             key={2}
             className="text-red-600 text-2xl hover:text-lime-500 cursor-pointer "
             onClick={() => {
-              if (
-                window.confirm(
-                  `are you sure to delete this user: ${user.taiKhoan}`
-                )
-              ) {
-                dispatch(deleteUserAction(user.taiKhoan));
-              }
+              conFirmDelete(user.taiKhoan);
             }}
           >
             <DeleteOutlined />
@@ -119,9 +139,9 @@ export default function Films(props) {
 
   return (
     <div className="container mx-auto Users text-center">
-      <h1 className="w-44 p-1 text-cyan-600 font-semibold rounded-md mt-2 text-2xl mb-4 ">
+      <h3 className="text-left px-3 pb-5 text-orange-700 font-semibold rounded-md mt-2 text-2xl mb-4 ">
         User Manager
-      </h1>
+      </h3>
       <Search
         className="w-1/3 mb-5"
         placeholder="Search user"

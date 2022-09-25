@@ -15,24 +15,23 @@ export const fetchUserListAction = (key = "") => {
   };
 };
 
-export const addNewUserAction = (values, AddUsersuccess) => {
+export const addNewUserAction = (values, AddNewsuccess, alertError) => {
   return async (dispatch) => {
     try {
       await userManagerService.addNewUser(values);
-      alert("add user successfull");
-      AddUsersuccess();
+      AddNewsuccess();
       dispatch(fetchUserListAction());
     } catch (error) {
-      alert(error.response.data.content);
+      alertError(error.response?.data.content);
     }
   };
 };
 
-export const deleteUserAction = (taiKhoan) => {
+export const deleteUserAction = (taiKhoan, Deletesuccess) => {
   return async (dispatch) => {
     try {
       await userManagerService.deleteUser(taiKhoan);
-      alert("delete user successfull");
+      Deletesuccess();
       dispatch(fetchUserListAction());
     } catch (error) {
       alert(error.response.data.content);
@@ -49,20 +48,19 @@ export const getUserInfoAction = (taiKhoan) => {
         payload: res.data.content,
       });
     } catch (error) {
-      console.log("get User info fail", error.response.data.content);
+      console.log("get User info fail", error.response?.data.content);
     }
   };
 };
 
-export const updateUserAction = (values, UpdateUsersuccess) => {
+export const updateUserAction = (values, UpdateUsersuccess, alertError) => {
   return async (dispatch) => {
     try {
       await userManagerService.updateUser(values);
-      alert("update user successful");
       UpdateUsersuccess();
       dispatch(fetchUserListAction());
     } catch (error) {
-      alert(error.response?.data);
+      alertError(error.response?.data.content);
     }
   };
 };

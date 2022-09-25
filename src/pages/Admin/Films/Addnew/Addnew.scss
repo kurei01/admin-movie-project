@@ -1,11 +1,7 @@
 .Addnew {
-  .title {
-    font-size: 1.25rem;
+  .ant-form-item-label > label {
     font-weight: 600;
-    margin-top: 16px;
-    margin-bottom: 20px;
-    margin-left: 4%;
-    padding-left: 10px;
+    font-size: 1rem;
   }
   img {
     width: 150px;
@@ -16,25 +12,30 @@
     margin-top: 5px;
   }
   .ant-switch {
-    background-color: #fff;
+    box-shadow: 1px 1px 2px 2px #faae86;
   }
   .ant-switch-checked {
-    background-color: #645caa;
+    background-color: #faae86;
   }
   .ant-switch-handle {
     &::before {
-      background-color: #bface0;
+      background-color: #ea580c;
     }
   }
   .addNew {
-    background-color: #645caa;
-    color: #bface0;
+    background-color: #ea580c;
+    color: #fff;
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
     font-weight: 600;
+    font-size: 16px;
+    transition: all 0.4s;
+    box-shadow: 2px 7px 19px -8px rgba(92, 92, 92, 0.58);
+    -webkit-box-shadow: 2px 7px 19px -8px rgba(92, 92, 92, 0.58);
+    -moz-box-shadow: 2px 7px 19px -8px rgba(92, 92, 92, 0.58);
     &:hover {
-      color: #645caa;
-      background-color: #bface0;
+      color: #ffffff;
+      background-color: #ec6720;
     }
   }
 }

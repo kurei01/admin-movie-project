@@ -1,14 +1,59 @@
 .adminTemplate {
   min-height: 100vh;
   .sider {
+    .ant-menu-submenu-title {
+      &:hover {
+        color: #faae86;
+      }
+    }
+    .ant-menu-submenu-selected {
+      color: #faae86;
+    }
+    .ant-menu-item {
+      &:hover {
+        color: #faae86;
+      }
+      &::after {
+        border-right: 3px solid #faae86;
+      }
+      a {
+        &:hover {
+          color: #faae86;
+        }
+      }
+    }
+    .ant-menu-item-selected {
+      color: #faae86;
+      a {
+        color: #faae86;
+        &:hover {
+          color: #faae86;
+        }
+      }
+    }
+    .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+      background-color: #ffefe6;
+    }
   }
 
   .site-layout {
     .header {
+      background: #fdc830; /* fallback for old browsers */
+      background: -webkit-linear-gradient(
+        to right,
+        #f37335,
+        #fdc830
+      ); /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(
+        to right,
+        #f37335,
+        #fdc830
+      ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
       .logo {
         text-align: center;
-        
-        img{
+
+        img {
           display: inline-block;
         }
       }

@@ -35,31 +35,32 @@ export const fetchMoviesAction = (nameMovie = "") => {
   };
 };
 
-export const addMovieByUploadImageAction = (formData, AddNewsuccess) => {
+export const addMovieByUploadImageAction = (
+  formData,
+  AddNewsuccess,
+  alertError
+) => {
   return async (dispatch) => {
     try {
       await movieManagerService.addMovieByUploadImage(formData);
-      alert("add movie successfull");
       AddNewsuccess();
     } catch (error) {
+      alertError(error.response?.data.content);
       console.log("error", error.response?.data);
     }
   };
 };
 
-export const uploadMovieUpdateAction = (formData, Editsuccess) => {
+export const uploadMovieUpdateAction = (formData, Editsuccess, alertError) => {
   return async (dispatch) => {
     try {
-      const result = await movieManagerService.uploadMovieUpdate(formData);
-      alert("update movie successfull");
-      console.log("resultEditMovie", result.data.content);
+      await movieManagerService.uploadMovieUpdate(formData);
       //reload movieList
       Editsuccess();
       dispatch(fetchMoviesAction());
     } catch (error) {
+      alertError(error.response?.data.content);
       console.log("error update movie", error.response?.data);
-      alert(error.response?.data.content)
-      console.log(error.response);
     }
   };
 };
@@ -79,12 +80,12 @@ export const getMovieInfoAction = (id) => {
   };
 };
 
-export const deleteMovieAction = (id) => {
+export const deleteMovieAction = (id, Deletesuccess) => {
   return async (dispatch) => {
     try {
       const result = await movieManagerService.deleteMovie(id);
       console.log("resultDeleteMovie", result.data.content);
-      alert("delete movie successfull");
+      Deletesuccess()
       //reload movieList
       dispatch(fetchMoviesAction());
     } catch (error) {

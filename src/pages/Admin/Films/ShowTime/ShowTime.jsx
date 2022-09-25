@@ -1,4 +1,4 @@
-import { Button, DatePicker, Form, InputNumber, Select } from "antd";
+import { DatePicker, Form, InputNumber, Select } from "antd";
 import { useFormik } from "formik";
 import moment from "moment";
 import React, { useEffect } from "react";
@@ -74,8 +74,8 @@ export default function ShowTime(props) {
 
   return (
     <div className="showTime">
-      <h3 className="title p-1 text-indigo-800 rounded-md">
-        create showtimes - {urlParams.get("name")}
+      <h3 className=" px-3 pb-5 text-orange-700 font-semibold rounded-md mt-2 text-2xl mb-4 ">
+        Create Showtimes - {urlParams.get("name")}
       </h3>
       <Form
         // onSubmitCapture={formik.handleSubmit}
@@ -148,11 +148,14 @@ export default function ShowTime(props) {
           )}
         </Form.Item>
 
-        <Form.Item className="text-end">
-          <Button className="addShowTime" htmlType="submit">
-            create showtimes
-          </Button>
-        </Form.Item>
+        <div className="text-center block">
+          <button
+            className="addShowTime py-2 px-3 drop-shadow-md"
+            htmlType="submit"
+          >
+            Create showtimes
+          </button>
+        </div>
       </Form>
     </div>
   );
