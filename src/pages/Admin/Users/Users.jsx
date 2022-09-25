@@ -137,9 +137,9 @@ export default function Films(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
+  return (  
     <div className="container mx-auto Users text-center">
-      <h3 className="text-left px-3 pb-5 text-orange-700 font-semibold rounded-md mt-2 text-2xl mb-4 ">
+      <h3 className="text-left pb-2 text-orange-700 font-semibold rounded-md mt-2 text-2xl mb-4 ">
         User Manager
       </h3>
       <Search

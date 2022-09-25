@@ -111,8 +111,8 @@ export default function Addnew(props) {
   };
 
   return (
-    <div className="Addnew">
-      <h3 className=" px-3 pb-5 text-orange-700 font-semibold rounded-md mt-2 text-2xl mb-4 ">
+    <div className="Addnew container mx-auto">
+      <h3 className="pb-3 text-orange-700 font-semibold rounded-md mt-2 text-2xl mb-4 ">
         Add New Movie
       </h3>
       <Form

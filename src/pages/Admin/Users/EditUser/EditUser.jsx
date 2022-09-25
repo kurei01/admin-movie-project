@@ -81,8 +81,8 @@ export default function EditUser(props) {
   }, []);
 
   return (
-    <div className="EditUser">
-      <h3 className=" px-3 pb-5 text-orange-700 font-semibold rounded-md mt-2 text-2xl mb-4 ">
+    <div className="EditUser container mx-auto">
+      <h3 className="pb-3 text-orange-700 font-semibold rounded-md mt-2 text-2xl mb-4 ">
         User - {taiKhoanCurrent}
       </h3>
       <Form onSubmitCapture={formik.handleSubmit} layout="vertical">

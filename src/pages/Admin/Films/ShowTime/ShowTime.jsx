@@ -1,4 +1,4 @@
-import { DatePicker, Form, InputNumber, Select } from "antd";
+import { DatePicker, Form, InputNumber, Modal, Select } from "antd";
 import { useFormik } from "formik";
 import moment from "moment";
 import React, { useEffect } from "react";
@@ -26,7 +26,12 @@ export default function ShowTime(props) {
 
   let urlParams = new URLSearchParams(props.location.search);
   const createShowtimesSuccess = () => {
-    history.push("/films");
+    Modal.success({
+      content: "Create showtime success",
+      onOk: () => {
+        history.push("/films");
+      },
+    });
   };
 
   const formik = useFormik({
@@ -73,8 +78,8 @@ export default function ShowTime(props) {
   }, []);
 
   return (
-    <div className="showTime">
-      <h3 className=" px-3 pb-5 text-orange-700 font-semibold rounded-md mt-2 text-2xl mb-4 ">
+    <div className="showTime container mx-auto">
+      <h3 className="pb-3 text-orange-700 font-semibold rounded-md mt-2 text-2xl mb-4 ">
         Create Showtimes - {urlParams.get("name")}
       </h3>
       <Form

@@ -69,8 +69,8 @@ export default function AddUser(props) {
   };
 
   return (
-    <div className="AddUser">
-      <h3 className=" px-3 pb-5 text-orange-700 font-semibold rounded-md mt-2 text-2xl mb-4 ">
+    <div className="AddUser container mx-auto">
+      <h3 className="pb-3 text-orange-700 font-semibold rounded-md mt-2 text-2xl mb-4 ">
         Add new user
       </h3>
       <Form

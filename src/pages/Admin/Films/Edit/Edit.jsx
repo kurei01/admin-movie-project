@@ -124,8 +124,8 @@ export default function Edit(props) {
   }, []);
 
   return (
-    <div className="Edit">
-      <h3 className=" px-3 pb-5 text-orange-700 font-semibold rounded-md mt-2 text-2xl mb-4 ">
+    <div className="Edit container mx-auto">
+      <h3 className="pb-3 text-orange-700 font-semibold rounded-md mt-2 text-2xl mb-4 ">
         Edit movie info
       </h3>
       <Form

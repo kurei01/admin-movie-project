@@ -126,7 +126,6 @@ export const createShowTimesAction = (formData, createShowtimesSuccess) => {
   return async (dispatch) => {
     try {
       await movieManagerService.createShowtimes(formData);
-      alert("add showtimes successfull");
       createShowtimesSuccess();
     } catch (error) {
       console.log("error", error.response?.data);
