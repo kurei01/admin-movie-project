@@ -24,6 +24,7 @@ export const AdminTemplate = (props) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // if (!localStorage.getItem(USER_LOGIN)) {
@@ -78,9 +79,9 @@ export const AdminTemplate = (props) => {
                   }}
                   theme="light"
                   mode="inline"
-                  defaultSelectedKeys={selectedKey}
+                  defaultSelectedKeys={["1"]}
                   selectedKeys={selectedKey}
-                  defaultOpenKeys={["sub1"]}
+                  defaultOpenKeys={["sub1", "sub2"]}
                 >
                   {/* movie */}
                   <Menu.SubMenu
