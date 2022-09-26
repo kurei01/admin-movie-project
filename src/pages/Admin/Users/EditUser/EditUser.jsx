@@ -94,6 +94,7 @@ export default function EditUser(props) {
             placeholder="User Name"
             type="text"
             value={formik.values.taiKhoan}
+            disabled
             // bordered={false}
           ></Input>
           {formik.touched.taiKhoan && formik.errors.taiKhoan && (
